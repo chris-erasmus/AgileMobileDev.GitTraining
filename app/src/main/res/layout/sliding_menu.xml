@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/red"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/profile_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Welcome User"
+        android:id="@+id/textView"
+        android:layout_above="@+id/ll1"
+        android:layout_toRightOf="@+id/profile_pic"
+        />
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/profile_pic">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Class 301"
+            android:layout_margin="5dp"
+            android:id="@+id/button" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_margin="5dp"
+            android:id="@+id/button2" />
+    </LinearLayout>
+    <View
+        android:id="@+id/seperator1"
+        android:layout_below="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/black"/>
+
+    <ListView
+        android:id="@+id/menu_list"
+        android:layout_below="@+id/seperator1"
+        android:layout_above="@+id/seperator2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@android:color/transparent"></ListView>
+
+    <View
+        android:id="@+id/seperator2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"/>
+
+    <LinearLayout
+        android:id="@+id/comment_dialog_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seperator1"
+        android:layout_above="@+id/seperator2"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/dialog_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            layout="@layout/dialog_in_menu"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/comment_button"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comment"
+        android:visibility="gone"
+        />
+
+
+
+
+</RelativeLayout>

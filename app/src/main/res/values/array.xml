@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="color_names">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>White</item>
+        <item>Black</item>
+    </string-array>
+
+    <string-array name="sliding_menu_list_items">
+        <item>Calculator</item>
+        <item>Stopwatch</item>
+        <item>Metric Convertor</item>
+        <item>TimeZone</item>
+        <item>Heads/Tails</item>
+        <item>Reminder Setter</item>
+        <item>Shopping List</item>
+        <item>Expenditure</item>
+        <item>WeightTracker</item>
+
+    </string-array>
+
+</resources>
