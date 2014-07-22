@@ -4,6 +4,9 @@
     <string name="app_name">Swiss Army Knife Utility</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="indian_time">India Time</string>
+    <string name="usa_time">US Time</string>
+    <string name="sa_time">SA Time</string>
 
     <string-array name="menu_items_list">
         <item>Item1</item>

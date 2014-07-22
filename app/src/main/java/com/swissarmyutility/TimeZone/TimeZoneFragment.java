@@ -14,13 +14,14 @@ import com.app.swissarmyutility.R;
 public class TimeZoneFragment extends AppFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //return the view here
-        return inflater.inflate(R.layout.other_fragment,null);
+        //return the view here  time
+        return inflater.inflate(R.layout.time_conversion,null);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         setTitle("TimeZone");
         super.onActivityCreated(savedInstanceState);
+
     }
 }
