@@ -184,10 +184,7 @@ public class TimeZoneFragment extends AppFragment {
 
         @Override
         protected void onPostExecute(String result) {
-            if (!isOnline()) {
-                showMessage("Error", "Problem in Network Connection please try again later.");
-            }
-            else{
+
                 super.onPostExecute(result);
                 long longmillis=Long.parseLong(str_time_stamp);
                 cal = Calendar.getInstance();
@@ -205,7 +202,7 @@ public class TimeZoneFragment extends AppFragment {
                         handler.postDelayed(this, 5000); //now is every 5 seconds
                     }
                 }, 5000); //Every  (5 seconds)
-            }
+
 
         }
     }
@@ -277,10 +274,7 @@ public class TimeZoneFragment extends AppFragment {
 
         @Override
         protected void onPostExecute(String result) {
-            if (!isOnline()) {
-                showMessage("Error", "Problem in Network Connection please try again later.");
-            }
-            else {
+
 
                 super.onPostExecute(result);
                 long longmillis = Long.parseLong(str_time_stamp);
@@ -304,7 +298,7 @@ public class TimeZoneFragment extends AppFragment {
                         handler.postDelayed(this, 5000); //now is every 5 seconds
                     }
                 }, 5000); //Every  (5 seconds)
-            }
+
         }
     }
 
@@ -375,10 +369,7 @@ public class TimeZoneFragment extends AppFragment {
 
         @Override
         protected void onPostExecute(String result) {
-            if (!isOnline()) {
-                showMessage("Error", "Problem in Network Connection please try again later.");
-            }
-            else {
+
                 super.onPostExecute(result);
                 long longmillis = Long.parseLong(str_time_stamp);
                 final Calendar cal_sa;
@@ -399,7 +390,7 @@ public class TimeZoneFragment extends AppFragment {
                         handler.postDelayed(this, 5000); //now is every 5 seconds
                     }
                 }, 5000); //Every  (5 seconds)
-            }
+
         }
     }
     public boolean isOnline() {
@@ -407,6 +398,9 @@ public class TimeZoneFragment extends AppFragment {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         if (netInfo != null && netInfo.isConnectedOrConnecting()) {
             return true;
+        }
+        else{
+            showMessage("Alert","Connection Error");
         }
         return false;
 
