@@ -18,12 +18,13 @@ android {
     }
     productFlavors {
     }
-    dexOptions {
-        preDexLibraries = false
-    }
     lintOptions {
         abortOnError false
     }
+    dexOptions {
+        preDexLibraries = false
+    }
+
 
 }
 task wrapper(type: Wrapper) {
