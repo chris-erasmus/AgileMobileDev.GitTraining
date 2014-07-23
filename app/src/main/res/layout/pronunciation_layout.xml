@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/pronunciation_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text=""
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:padding="10dp"
+
+            />
+
+        <Button
+            android:id="@+id/pronunciation_sound_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:contentDescription="@string/app_name"
+            android:background="@drawable/dictionarypopup_playbutton"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@+id/pronunciation_text_view"
+            />
+
+    <ProgressBar
+        android:id="@+id/streaming_sound_progressbar"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:contentDescription="@string/app_name"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/pronunciation_text_view"
+        android:visibility="gone"
+        />
+
+
+    </RelativeLayout>

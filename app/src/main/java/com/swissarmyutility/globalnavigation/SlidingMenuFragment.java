@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.swissarmyutility.Calculator.CalculatorFragment;
+import com.swissarmyutility.Dictionary.WordsmithDictionaryFragment;
 import com.swissarmyutility.Expenditure.ExpenditureFragment;
 import com.swissarmyutility.HeadTails.HeadTailsFragment;
 import com.swissarmyutility.MetricConvertor.MetricConvertorFragment;
@@ -73,6 +74,7 @@ public class SlidingMenuFragment extends Fragment {
         appFragments.add(new ShoppingListFragment());
         appFragments.add(new ExpenditureFragment());
         appFragments.add(new WeightTrackerFragment());
+        appFragments.add(new WordsmithDictionaryFragment());
         return view;
 	}
 
@@ -139,7 +141,7 @@ public class SlidingMenuFragment extends Fragment {
 
     class MenuListAdapter extends BaseAdapter{
         String listItemNames[] = SlidingMenuFragment.this.getActivity().getResources().getStringArray(R.array.sliding_menu_list_items);
-        int iconImages[] = {R.drawable.calculator,R.drawable.stopwatch, R.drawable.metric_convertor, R.drawable.time_zone, R.drawable.head_tails, R.drawable.reminder_setter, R.drawable.shopping_list, R.drawable.expenditure, R.drawable.weight_tracker};
+        int iconImages[] = {R.drawable.calculator,R.drawable.stopwatch, R.drawable.metric_convertor, R.drawable.time_zone, R.drawable.head_tails, R.drawable.reminder_setter, R.drawable.shopping_list, R.drawable.expenditure, R.drawable.weight_tracker, R.drawable.weight_tracker};
         LayoutInflater layoutInflater = null;
 
         public MenuListAdapter(){
