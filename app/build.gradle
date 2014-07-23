@@ -18,8 +18,14 @@ android {
     }
     productFlavors {
     }
-}
+    dexOptions {
+        preDexLibraries = false
+    }
 
+}
+task wrapper(type: Wrapper) {
+    gradleVersion = '0.12'
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':library')

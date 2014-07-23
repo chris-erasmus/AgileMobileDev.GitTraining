@@ -2,10 +2,10 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="C:\Users\maidul.islam\Documents\GitHub\AgileMobileDev.GitTraining\library\assets" />
+        <source path="D:\WorkSpace_UtilityApp\library\assets" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="C:\Users\maidul.islam\Documents\GitHub\AgileMobileDev.GitTraining\library\src\debug\assets" />
+        <source path="D:\WorkSpace_UtilityApp\library\src\debug\assets" />
     </dataSet>
 
 </merger>
