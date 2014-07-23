@@ -22,7 +22,7 @@ android {
         preDexLibraries = false
     }
     lintOptions {
-        abortOnError = false
+        abortOnError false
     }
 
 }
