@@ -3,8 +3,6 @@
 
     <dimen name="shadow_width">10dp</dimen>
     <dimen name="slidingmenu_offset">150dp</dimen>
-<dimen name="buttonTextSize">60sp</dimen>
-    <dimen name="editTextSize">80sp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_size_timer">50sp</dimen>
@@ -13,5 +11,4 @@
     <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_2">2dp</dimen>
     <dimen name="text_size_list_item">20sp</dimen>
-
 </resources>
