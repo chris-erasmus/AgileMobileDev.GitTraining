@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 'android-L'
-    buildToolsVersion '20.0.0'
+    compileSdkVersion 19
+    buildToolsVersion '19.1'
     defaultConfig {
         applicationId 'com.example.nareshkaushik.myapplication'
-        minSdkVersion 'L'
-        targetSdkVersion 'L'
+        minSdkVersion 10
+        targetSdkVersion 19
         versionCode 1
         versionName '1.0'
     }

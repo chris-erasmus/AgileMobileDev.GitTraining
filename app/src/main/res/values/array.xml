@@ -18,6 +18,7 @@
         <item>Reminder Setter</item>
         <item>Shopping List</item>
         <item>Expenditure</item>
+        <item>WeatherInfo</item>
         <item>WeightTracker</item>
 
     </string-array>
