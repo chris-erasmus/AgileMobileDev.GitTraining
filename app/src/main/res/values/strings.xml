@@ -7,6 +7,12 @@
     <string name="indian_time">India Time</string>
     <string name="usa_time">US Time</string>
     <string name="sa_time">SA Time</string>
+     <string name="track">Track</string>
+    <string name="hint">Weight</string>
+    <string name="loss_weight">Δweight</string>
+    <string name="weight">weight</string>
+    <string name="time">Time</string>
+    <string name="serial_no">Sno.</string>
 
     <string-array name="menu_items_list">
         <item>Item1</item>

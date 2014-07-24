@@ -10,6 +10,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.swissarmyutility.dataModel.HeadTailModel;
+import com.swissarmyutility.dataModel.WeightTrackModel;
 
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	// the DAO object we use to access the SimpleData table
 
     private Dao<HeadTailModel, Integer> headTail = null;
+    private Dao<WeightTrackModel, Integer> weightTrackModel = null;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -34,6 +36,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	public void onCreate(SQLiteDatabase database,ConnectionSource connectionSource) {
 		try {
 			TableUtils.createTable(connectionSource, HeadTailModel.class);
+            TableUtils.createTable(connectionSource, WeightTrackModel.class);
 
 		} catch (SQLException e) {
 			Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
@@ -74,4 +77,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		}
 		return headTail;
 	}
+    public Dao<WeightTrackModel, Integer> WeightTrackModelListDao() {
+        if (null == weightTrackModel) {
+            try {
+                weightTrackModel = getDao(WeightTrackModel.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return weightTrackModel;
+    }
 }
