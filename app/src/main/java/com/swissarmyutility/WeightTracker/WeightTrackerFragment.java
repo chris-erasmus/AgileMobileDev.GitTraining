@@ -144,7 +144,7 @@ public class WeightTrackerFragment extends AppFragment {
             valueArray_time[i] = Double.parseDouble(""+i);
         }
 
-        String[] titles = new String[] {""};
+        String[] titles = new String[] {"Weight Graph"};
         List<double[]> x = new ArrayList<double[]>();
         List<double[]> values = new ArrayList<double[]>();
 
@@ -156,7 +156,7 @@ public class WeightTrackerFragment extends AppFragment {
         PointStyle[] styles = new PointStyle[] { PointStyle.X };
         XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
 
-        renderer.setPointSize(3f);
+        renderer.setPointSize(0f);  // to  increase the size of the Circle
         renderer.setPanLimits(valueArray1);
 
         int length = renderer.getSeriesRendererCount();
