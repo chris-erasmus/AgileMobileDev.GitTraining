@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AgileMobileDev.GitTraining.iml" filepath="$PROJECT_DIR$/AgileMobileDev.GitTraining.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WorkSpace_UtilityApp.iml" filepath="$PROJECT_DIR$/WorkSpace_UtilityApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>
