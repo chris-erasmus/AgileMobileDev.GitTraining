@@ -96,9 +96,12 @@ public class WeightTrackerFragment extends AppFragment {
 
     }
 
+    /**
+     *  Entering data into listview
+     */
     private void AddingAdapter(){
         user_graph.removeAllViews();
-//        allWishLists.clear();
+
         allWishLists = DatabaseManager.getInstance().getAllWeightTrackerLists();
         weightTrackerAdapter = new WeightTrackerAdapter(getActivity(),allWishLists);
         list.setAdapter(weightTrackerAdapter);
@@ -118,7 +121,11 @@ public class WeightTrackerFragment extends AppFragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-
+    /**
+     * Contaning Chart functionality
+     * @param valuesList
+     * @param user_graph
+     */
     public void Opengraph_activity( List<WeightTrackModel> valuesList,LinearLayout user_graph) {
 
         double[] valueArray1 = new double[valuesList.size()];
@@ -127,20 +134,10 @@ public class WeightTrackerFragment extends AppFragment {
         {
             String weightVal = valuesList.get(i).getWeight();
 
-//          valueArray1[i] = Double.parseDouble(valuesList.get(i).getWeight());
-//          valueArray_time[i] = Double.parseDouble(valuesList.get(i).getTime());
 
             valueArray1[i] = Double.parseDouble(weightVal);
             String timeArray = valuesList.get(i).getTime();
 
-            String[] SplitTime = timeArray.split(" ");
-//            String TimeValue = "";
-
-//            for(int p =0;p<SplitTime.length;p++){
-//                Log.e("Time::",""+SplitTime[p]);
-////                TimeValue = SplitTime[1];
-//            }
-//           valueArray_time[i] = Double.parseDouble(TimeValue.replace("-","."));
             valueArray_time[i] = Double.parseDouble(""+i);
         }
 
@@ -270,11 +267,6 @@ public class WeightTrackerFragment extends AppFragment {
         renderer.setChartTitle(title);
         renderer.setXTitle(xTitle);
         renderer.setYTitle(yTitle);
-
-//        renderer.setXAxisMin(xMin);
-//        renderer.setXAxisMax(xMax);
-//        renderer.setYAxisMin(yMin);
-//        renderer.setYAxisMax(yMax);
 
         for (int i=0;i<xMax;i++){
             renderer.addYTextLabel(i, "10%");
