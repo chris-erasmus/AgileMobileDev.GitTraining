@@ -5,5 +5,15 @@
     <color name="blue">#009</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
-    
+    <color name="header_color">#F4F4F4</color>
+    <color name="scroll_area_color">#FFFFFF</color>
+    <color name="footer_color">#F4F4F4</color>
+    <color name="light_green">#98CB00</color>
+    <color name="off_white">#eaeaea</color>
+    <color name="background_fragment">#000</color>
+    <color name="background_top_bar">#6D9A00</color>
+    <color name="side_bar_selection">#6D9A00</color>
+    <color name="side_bar_gray">#656766</color>
+    <color name="background_fragment_gray">#838383</color>
+
 </resources>
