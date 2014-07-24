@@ -2,14 +2,14 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="D:\WorkSpace_UtilityApp\library\res" >
+        <source path="C:\Users\vinod.sakala\Documents\GitHub\AgileMobileDev.GitTraining\library\res" >
             <file
                 name="slidingmenumain"
-                path="D:\WorkSpace_UtilityApp\library\res\layout\slidingmenumain.xml"
+                path="C:\Users\vinod.sakala\Documents\GitHub\AgileMobileDev.GitTraining\library\res\layout\slidingmenumain.xml"
                 qualifiers=""
                 type="layout" />
             <file
-                path="D:\WorkSpace_UtilityApp\library\res\values\attrs.xml"
+                path="C:\Users\vinod.sakala\Documents\GitHub\AgileMobileDev.GitTraining\library\res\values\attrs.xml"
                 qualifiers="" >
                 <declare-styleable name="SlidingMenu" >
                     <attr name="mode" >
@@ -78,18 +78,18 @@
                 </declare-styleable>
             </file>
             <file
-                path="D:\WorkSpace_UtilityApp\library\res\values\ids.xml"
+                path="C:\Users\vinod.sakala\Documents\GitHub\AgileMobileDev.GitTraining\library\res\values\ids.xml"
                 qualifiers="" >
                 <item
                     name="selected_view"
                     type="id"/>
             </file>
         </source>
-        <source path="D:\WorkSpace_UtilityApp\library\build\generated\res\rs\release" />
-        <source path="D:\WorkSpace_UtilityApp\library\build\generated\res\generated\release" />
+        <source path="C:\Users\vinod.sakala\Documents\GitHub\AgileMobileDev.GitTraining\library\build\generated\res\rs\release" />
+        <source path="C:\Users\vinod.sakala\Documents\GitHub\AgileMobileDev.GitTraining\library\build\generated\res\generated\release" />
     </dataSet>
     <dataSet config="release" >
-        <source path="D:\WorkSpace_UtilityApp\library\src\release\res" />
+        <source path="C:\Users\vinod.sakala\Documents\GitHub\AgileMobileDev.GitTraining\library\src\release\res" />
     </dataSet>
 
 </merger>
