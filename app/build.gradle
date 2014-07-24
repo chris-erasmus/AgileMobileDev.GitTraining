@@ -4,7 +4,7 @@ android {
     compileSdkVersion 'android-L'
     buildToolsVersion '20.0.0'
     defaultConfig {
-        applicationId 'com.example.nareshkaushik.myapplication'
+        applicationId 'com.app.swissarmyutility'
         minSdkVersion 'L'
         targetSdkVersion 'L'
         versionCode 1
@@ -16,13 +16,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    productFlavors {
+    lintOptions {
+        abortOnError false
     }
     dexOptions {
         preDexLibraries = false
-    }
-    lintOptions {
-        abortOnError = false
     }
 
 }
