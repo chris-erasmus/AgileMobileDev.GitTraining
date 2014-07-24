@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/header"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header_layout"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.8"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/head_tail_coin_image"
+                android:src="@drawable/head"
+                android:maxWidth="390dp"
+                android:maxHeight="390dp"
+                android:scaleType="center"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/head_tail_flip_coin_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Flip Coin"
+                android:layout_below="@+id/head_tail_coin_image_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+                <LinearLayout
+                    android:id="@+id/head_count_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/rounded_background">
+                    <TextView
+                        android:id="@+id/head_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:padding="10dp"
+                        android:textSize="30dp"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/head_count_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HEAD"
+                    android:layout_marginTop="10dp"
+                    android:textSize="30dp"/>
+                </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+                <LinearLayout
+                    android:id="@+id/tail_count_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_background">
+                    <TextView
+                        android:id="@+id/tail_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:padding="10dp"
+                        android:background="@drawable/rounded_background"
+                        android:textSize="30dp"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tail_count_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TAIL"
+                    android:layout_marginTop="10dp"
+                    android:textSize="30dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        </LinearLayout>
+
+
+</RelativeLayout>

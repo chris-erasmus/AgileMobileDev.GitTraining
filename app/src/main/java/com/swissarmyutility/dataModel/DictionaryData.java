@@ -1,5 +1,8 @@
 package com.swissarmyutility.dataModel;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.ArrayList;
 
 /**
@@ -61,4 +64,6 @@ public class DictionaryData
     public void setWePhraseList(ArrayList<WePhrase> wePhraseList) {
         this.wePhraseList = wePhraseList;
     }
+
+
 }
