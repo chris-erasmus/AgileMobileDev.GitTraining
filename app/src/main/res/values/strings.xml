@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="hello">Hello World, StopWatch!</string>
+    <string name="chronometer_initial_format"><xliff:g id="initial-format">%s</xliff:g></string>
+    <string name="start_btn">START</string>
+    <string name="stop_btn">STOP</string>
+    <string name="reset_btn">RESET</string>
+    <string name="lap_btn">LAP</string>
 
     <string name="app_name">Swiss Army Knife Utility</string>
     <string name="hello_world">Hello world!</string>
