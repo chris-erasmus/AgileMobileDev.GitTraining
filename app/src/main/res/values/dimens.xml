@@ -11,4 +11,6 @@
     <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_2">2dp</dimen>
     <dimen name="text_size_list_item">20sp</dimen>
+    <dimen name="buttonTextSize">60sp</dimen>
+    <dimen name="editTextSize">80sp</dimen>
 </resources>
