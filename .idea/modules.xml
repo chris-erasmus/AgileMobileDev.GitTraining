@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/UtilityDictionaryBranch.iml" filepath="$PROJECT_DIR$/UtilityDictionaryBranch.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/UtilityApp.iml" filepath="$PROJECT_DIR$/UtilityApp.iml" />
+>>>>>>> 60e41862e121edf1f7a8601bd041b40a98ca0baf
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>

@@ -9,4 +9,6 @@
     <color name="scroll_area_color">#FFFFFF</color>
     <color name="footer_color">#F4F4F4</color>
     <color name="light_green">#98CB00</color>
+    <color name="off_white">#eaeaea</color>
+
 </resources>
