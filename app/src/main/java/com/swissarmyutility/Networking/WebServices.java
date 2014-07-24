@@ -22,9 +22,13 @@ import java.io.InputStreamReader;
 
 public class WebServices
 {
-	String DICTIONARY_URL = "http://dev.wordsmyth.net/testdir/web_services/all_fields_entry.xml.php?ent=%s&dict=1";
+    private String DICTIONARY_URL = "http://dev.wordsmyth.net/testdir/web_services/all_fields_entry.xml.php?ent=%s&dict=1";
     public static String MUSIC_URL = "http://www.moviesoundclips.net/effects/weapons/riflecock-1.wav";
-    static WebServices mSingletonWebServicesInstance;
+    private static WebServices mSingletonWebServicesInstance;
+    private WebServices()
+    {
+
+    }
 
     public static WebServices getSingletonInstance()
     {
@@ -35,7 +39,7 @@ public class WebServices
         return mSingletonWebServicesInstance;
     }
 
-    String fetchXMLData(String dataURL)
+    private String fetchXMLData(String dataURL)
     {
         String xmlString = "";
         try {
