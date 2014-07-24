@@ -151,7 +151,6 @@ public class WeightTrackerFragment extends AppFragment {
         x.add( valueArray_time );
         values.add(valueArray1);
 
-//      values.add(new double[] { 9, 10, 11, 15, 11, 9, 10 });
 
         int[] colors = new int[] { Color.GREEN };
         PointStyle[] styles = new PointStyle[] { PointStyle.X };
@@ -185,17 +184,7 @@ public class WeightTrackerFragment extends AppFragment {
         renderer.setClickEnabled(false);
         renderer.setLabelsColor(Color.BLACK);
         renderer.setMarginsColor(Color.argb(0, 250, 250, 250));
-		/*renderer.setPanLimits(new double[] { -10, 20, -10, 40 });
-		renderer.setZoomLimits(new double[] { -10, 20, -10, 40 });*/
 
-//        XYSeries waterSeries = new XYSeries("Water Temperature");
-//        waterSeries.add(1, 16);
-//        waterSeries.add(2, 15);
-//        waterSeries.add(3, 16);
-//        waterSeries.add(4, 17);
-//        waterSeries.add(5, 20);
-//        waterSeries.add(6, 23);
-//        waterSeries.add(7, 25);
 
         renderer.setBarSpacing(0.5);
 
