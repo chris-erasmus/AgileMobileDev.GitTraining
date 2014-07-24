@@ -4,7 +4,7 @@ android {
     compileSdkVersion 'android-L'
     buildToolsVersion '20.0.0'
     defaultConfig {
-        applicationId 'com.example.nareshkaushik.myapplication'
+        applicationId 'com.app.swissarmyutility'
         minSdkVersion 'L'
         targetSdkVersion 'L'
         versionCode 1
