@@ -2,10 +2,10 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="D:\Piyush\Projects\UtilityDictionaryBranch\library\assets" />
+        <source path="C:\Users\Chris\Work\AgileMobileDev.GitTraining\library\assets" />
     </dataSet>
     <dataSet config="release" >
-        <source path="D:\Piyush\Projects\UtilityDictionaryBranch\library\src\release\assets" />
+        <source path="C:\Users\Chris\Work\AgileMobileDev.GitTraining\library\src\release\assets" />
     </dataSet>
 
 </merger>
