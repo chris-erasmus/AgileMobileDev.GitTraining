@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.app.swissarmyutility.R;
-import com.swissarmyutility.Constant.Utils;
 import com.swissarmyutility.data.DatabaseManager;
 import com.swissarmyutility.dataModel.WeightTrackModel;
 import com.swissarmyutility.globalnavigation.AppFragment;
@@ -63,7 +62,6 @@ public class WeightTrackerFragment extends AppFragment {
         DatabaseManager.init(getActivity());
         AddingAdapter();
 
-         Opengraph_activity(allWishLists,user_graph);
 
     btnTrade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +77,7 @@ public class WeightTrackerFragment extends AppFragment {
                     DatabaseManager.getInstance().addWeightTrackList(weightTrackModel);
                     allWishLists.clear();
 
-                    Toast.makeText(getActivity(), "" + allWishLists.size(), Toast.LENGTH_SHORT).show();
+
                     for(WeightTrackModel wishListItem: allWishLists)
                     {
                         System.out.println("MyTimestamp :"+wishListItem.getTime());
@@ -99,11 +97,15 @@ public class WeightTrackerFragment extends AppFragment {
     }
 
     private void AddingAdapter(){
+        user_graph.removeAllViews();
+//        allWishLists.clear();
         allWishLists = DatabaseManager.getInstance().getAllWeightTrackerLists();
         weightTrackerAdapter = new WeightTrackerAdapter(getActivity(),allWishLists);
         list.setAdapter(weightTrackerAdapter);
-        Utils.setListViewHeightBasedOnChildren(list);
+
         etWeight.setText("");
+
+        Opengraph_activity(allWishLists,user_graph);
 
         getActivity().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -131,16 +133,15 @@ public class WeightTrackerFragment extends AppFragment {
             valueArray1[i] = Double.parseDouble(weightVal);
             String timeArray = valuesList.get(i).getTime();
 
-//            android:Theme.Holo.Light.DarkActionBar
-
             String[] SplitTime = timeArray.split(" ");
-            String TimeValue = "";
-            for(int p =0;p<SplitTime.length;p++){
-                Log.e("Time::",""+SplitTime[p]);
-                TimeValue = SplitTime[1];
-            }
-           valueArray_time[i] = Double.parseDouble(TimeValue.replace("-","."));
+//            String TimeValue = "";
 
+//            for(int p =0;p<SplitTime.length;p++){
+//                Log.e("Time::",""+SplitTime[p]);
+////                TimeValue = SplitTime[1];
+//            }
+//           valueArray_time[i] = Double.parseDouble(TimeValue.replace("-","."));
+            valueArray_time[i] = Double.parseDouble(""+i);
         }
 
         String[] titles = new String[] {""};
@@ -153,20 +154,21 @@ public class WeightTrackerFragment extends AppFragment {
 //      values.add(new double[] { 9, 10, 11, 15, 11, 9, 10 });
 
         int[] colors = new int[] { Color.GREEN };
-        PointStyle[] styles = new PointStyle[] { PointStyle.CIRCLE };
+        PointStyle[] styles = new PointStyle[] { PointStyle.X };
         XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
 
-        renderer.setPointSize(5.5f);
+        renderer.setPointSize(3f);
+        renderer.setPanLimits(valueArray1);
 
         int length = renderer.getSeriesRendererCount();
 
         for (int i = 0; i < length; i++) {
             XYSeriesRenderer r = (XYSeriesRenderer) renderer
                     .getSeriesRendererAt(i);
-            r.setLineWidth(5);
+            r.setLineWidth(7);
             r.setFillPoints(true);
         }
-        setChartSettings(renderer, "Weight Tracking", "Daily", "Date", 0.5,
+        setChartSettings(renderer, "Weight Tracking", "Number", "Weight", 0.5,
                 valuesList.size(),0,valuesList.size(), Color.LTGRAY, Color.LTGRAY);
 
         renderer.setXLabels(12);
@@ -279,10 +281,22 @@ public class WeightTrackerFragment extends AppFragment {
         renderer.setChartTitle(title);
         renderer.setXTitle(xTitle);
         renderer.setYTitle(yTitle);
-        renderer.setXAxisMin(xMin);
-        renderer.setXAxisMax(xMax);
-        renderer.setYAxisMin(yMin);
-        renderer.setYAxisMax(yMax);
+
+//        renderer.setXAxisMin(xMin);
+//        renderer.setXAxisMax(xMax);
+//        renderer.setYAxisMin(yMin);
+//        renderer.setYAxisMax(yMax);
+
+        for (int i=0;i<xMax;i++){
+            renderer.addYTextLabel(i, "10%");
+        }
+        for (int i=0;i<yMax;i++){
+            renderer.addYTextLabel(i, "20%");
+        }
+
+
+
+        Log.e("Xmax",""+xMax);
         renderer.setAxesColor(axesColor);
         renderer.setLabelsColor(labelsColor);
     }

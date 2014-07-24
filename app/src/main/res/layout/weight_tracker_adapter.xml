@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent"
+    android:layout_height="69dp"
  >
     <TextView
         android:id="@+id/weight_tracker_serial_no"
@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_weight=".6"
         android:gravity="center"
+        android:text="kjdfhjk"
         android:textColor="#fff"
         />
 
