@@ -14,7 +14,7 @@
             android:layout_centerVertical="true"
             android:textSize="18sp"
             android:padding="10dp"
-
+            android:textColor="@android:color/black"
             />
 
         <Button

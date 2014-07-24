@@ -9,4 +9,5 @@
         android:layout_centerVertical="true"
         android:textSize="20sp"
         android:padding="10dp"
+    android:textColor="@android:color/black"
  />

@@ -24,6 +24,7 @@ public class WebServices
 {
     private String DICTIONARY_URL = "http://dev.wordsmyth.net/testdir/web_services/all_fields_entry.xml.php?ent=%s&dict=1";
     public static String MUSIC_URL = "http://www.moviesoundclips.net/effects/weapons/riflecock-1.wav";
+    public static String IMAGE_URL = "http://kids.wordsmyth.net/media/wcdt/image/";
     private static WebServices mSingletonWebServicesInstance;
     private WebServices()
     {

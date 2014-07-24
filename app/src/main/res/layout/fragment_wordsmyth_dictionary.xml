@@ -2,7 +2,9 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    >
 
 
     <include android:layout_width="match_parent"
@@ -26,6 +28,7 @@
             android:layout_toLeftOf="@+id/search_btn"
             android:singleLine="true"
             android:maxLines="1"
+            android:textColor="@android:color/black"
             />
 
         <Button
@@ -34,6 +37,7 @@
             android:layout_height="wrap_content"
             android:text="Search"
             android:layout_alignParentRight="true"
+            android:textColor="@android:color/black"
 
             />
 
@@ -53,8 +57,7 @@
         <RelativeLayout
             android:id="@+id/load_dictionary_data_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_height="match_parent"
             android:background="@android:color/white"
             >
             <LinearLayout
@@ -73,7 +76,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="Finding meanings..."
-                    android:textSize="18sp" />
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="5dp"
+                    />
             </LinearLayout>
 
 
@@ -85,7 +91,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_above="@+id/footer_layout"
-
             >
 
             <LinearLayout
@@ -100,16 +105,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:padding="10dp"
-                    android:text="fsdfsd"
+                    android:text=""
                     android:textSize="22sp"
+                    android:textColor="@android:color/black"
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/scroll_area_color"
-                android:orientation="vertical" >
+
 
                 <LinearLayout
                     android:id="@+id/data_layout"
@@ -140,9 +142,6 @@
                                 android:orientation="vertical" />
                         </LinearLayout>
                     </ScrollView>
-                </LinearLayout>
-
-
             </LinearLayout>
 
 
@@ -178,6 +177,7 @@
                 android:layout_gravity="center_vertical"
                 android:textSize="16sp"
                 android:padding="10dp"
+                android:textColor="@android:color/darker_gray"
                 />
 
         </LinearLayout>

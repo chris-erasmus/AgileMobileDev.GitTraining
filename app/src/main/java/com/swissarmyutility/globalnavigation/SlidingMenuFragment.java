@@ -141,7 +141,7 @@ public class SlidingMenuFragment extends Fragment {
 
     class MenuListAdapter extends BaseAdapter{
         String listItemNames[] = SlidingMenuFragment.this.getActivity().getResources().getStringArray(R.array.sliding_menu_list_items);
-        int iconImages[] = {R.drawable.calculator,R.drawable.stopwatch, R.drawable.metric_convertor, R.drawable.time_zone, R.drawable.head_tails, R.drawable.reminder_setter, R.drawable.shopping_list, R.drawable.expenditure, R.drawable.weight_tracker, R.drawable.weight_tracker};
+        int iconImages[] = {R.drawable.calculator,R.drawable.stopwatch, R.drawable.metric_convertor, R.drawable.time_zone, R.drawable.head_tails, R.drawable.reminder_setter, R.drawable.shopping_list, R.drawable.expenditure, R.drawable.weight_tracker, R.drawable.dictionary};
         LayoutInflater layoutInflater = null;
 
         public MenuListAdapter(){

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.app.swissarmyutility.R;
 import com.swissarmyutility.Networking.WebServices;
+import com.swissarmyutility.Utility.ImageLoader;
 import com.swissarmyutility.Utility.Utility;
 import com.swissarmyutility.dataModel.DictionaryData;
 import com.swissarmyutility.dataModel.Part;
@@ -54,10 +56,12 @@ public class WordsmithDictionaryFragment extends AppFragment {
     LinearLayout footer_layout;
     Button mWordPronunciationSoundBtn;
     ProgressBar mWordSoundStreamingProgressBar;
-
+    FetchDictionaryDataTask mFetchDictionaryDataTask;
+    ImageLoader mImageLoader;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_wordsmyth_dictionary,null);
+        mImageLoader = new ImageLoader(getActivity());
         inputMethodManger = (InputMethodManager)getActivity().getSystemService( Context.INPUT_METHOD_SERVICE);
         inflator = getActivity().getLayoutInflater();
         footer_layout =  (LinearLayout)view.findViewById(R.id.footer_layout);
@@ -84,8 +88,8 @@ public class WordsmithDictionaryFragment extends AppFragment {
                         {
                             partsLayout.removeAllViews();
                         }
-
-                        new FetchDictionaryDataTask().execute(mSearchText.getText().toString());
+                        mFetchDictionaryDataTask = new FetchDictionaryDataTask();
+                        mFetchDictionaryDataTask.execute(mSearchText.getText().toString());
                     }
                     else
                     {
@@ -130,6 +134,10 @@ public class WordsmithDictionaryFragment extends AppFragment {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if(mFetchDictionaryDataTask != null && !mFetchDictionaryDataTask.isCancelled())
+            {
+                mFetchDictionaryDataTask.cancel(true);
+            }
             mWordPronunciationSoundBtn = null;
             mWordSoundStreamingProgressBar = null;
             dictionary_data_layout.setVisibility(View.GONE);
@@ -186,12 +194,14 @@ public class WordsmithDictionaryFragment extends AppFragment {
 
                         if(pronunciations.get(i).getStress() != null) {
                             ((TextView) pronunciationLayout.findViewById(R.id.pronunciation_text_view)).setText(pronunciations.get(i).getStress());
-                            mWordPronunciationSoundBtn = ((Button) pronunciationLayout.findViewById(R.id.pronunciation_sound_btn));
-                            mWordSoundStreamingProgressBar = ((ProgressBar) pronunciationLayout.findViewById(R.id.streaming_sound_progressbar));
-                            ((Button) pronunciationLayout.findViewById(R.id.pronunciation_sound_btn)).setTag(tag++);
-                            ((Button) pronunciationLayout.findViewById(R.id.pronunciation_sound_btn)).setOnClickListener(new View.OnClickListener() {
+                            final Button wordPronunciationSoundBtn = ((Button) pronunciationLayout.findViewById(R.id.pronunciation_sound_btn));
+                            final ProgressBar wordSoundStreamingProgressBar = ((ProgressBar) pronunciationLayout.findViewById(R.id.streaming_sound_progressbar));
+                            wordPronunciationSoundBtn.setTag(tag++);
+                            wordPronunciationSoundBtn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    mWordSoundStreamingProgressBar = wordSoundStreamingProgressBar;
+                                    mWordPronunciationSoundBtn = wordPronunciationSoundBtn;
                                     if (mWordSoundStreamingProgressBar != null)
                                         mWordSoundStreamingProgressBar.setVisibility(View.VISIBLE);
 
@@ -250,7 +260,7 @@ public class WordsmithDictionaryFragment extends AppFragment {
                                 TextView definition = (TextView)senseLayout.findViewById(R.id.definition_text_view);
                                 TextView synonyms = (TextView)senseLayout.findViewById(R.id.synonym_texts_text_view);
                                 TextView spanish_translation_text_view = (TextView)senseLayout.findViewById(R.id.spanish_translation_text_view);
-
+                                LinearLayout wordExampleImageListLayout = (LinearLayout)senseLayout.findViewById(R.id.images_layout);
 
                                 if(senseList.get(j).getDefinition() != null) {
                                     definitionNoTextView.setText((j + 1) + "");
@@ -301,6 +311,28 @@ public class WordsmithDictionaryFragment extends AppFragment {
                                     ((TextView)senseLayout.findViewById(R.id.spanish_translation_title_textview)).setVisibility(View.GONE);
                                 }
 
+                                if(senseList.get(j).getImageList()!= null)
+                                {
+                                    ArrayList<String> imageList = senseList.get(j).getImageList();
+
+                                    for(int k=0;k<imageList.size();k++)
+                                    {
+
+                                        String imageName = imageList.get(i);
+                                        if(!imageName.endsWith(".gif")) {
+                                            RelativeLayout wordImageLayout = (RelativeLayout) inflator.inflate(R.layout.word_image_layout, null);
+                                            ImageView wordImage = (ImageView) wordImageLayout.findViewById(R.id.word_image_view);
+                                            mImageLoader.displayImage(wordImage, WebServices.IMAGE_URL + imageName);
+                                            wordExampleImageListLayout.addView(wordImageLayout);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    wordExampleImageListLayout.setVisibility(View.GONE);
+                                }
+
+
                                 sensesLayout.addView(senseLayout);
                             }
 
@@ -310,6 +342,7 @@ public class WordsmithDictionaryFragment extends AppFragment {
                     }
 
                 }
+
                 load_dictionary_data_layout.setVisibility(View.GONE);
                 dictionary_data_layout.setVisibility(View.VISIBLE);
                 footer_layout.setVisibility(View.VISIBLE);
