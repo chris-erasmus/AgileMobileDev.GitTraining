@@ -4,8 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import weathermodel.Location;
-import weathermodel.Weather;
+import com.swissarmyutility.weatherModel.Location;
+import com.swissarmyutility.weatherModel.Weather;
 
 /**
  * Created by Vinod.sakala on 7/23/2014.

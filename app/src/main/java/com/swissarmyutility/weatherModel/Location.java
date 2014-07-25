@@ -1,4 +1,4 @@
-package weathermodel;
+package com.swissarmyutility.weatherModel;
 
 import java.io.Serializable;
 

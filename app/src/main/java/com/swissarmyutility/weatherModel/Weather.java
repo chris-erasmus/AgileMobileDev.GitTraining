@@ -1,4 +1,4 @@
-package weathermodel;
+package com.swissarmyutility.weatherModel;
 
 
 public class Weather {

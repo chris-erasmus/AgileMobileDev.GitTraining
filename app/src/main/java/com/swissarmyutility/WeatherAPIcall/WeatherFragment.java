@@ -1,6 +1,5 @@
 package com.swissarmyutility.WeatherAPIcall;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,15 +7,15 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.app.swissarmyutility.R;
@@ -24,7 +23,9 @@ import com.swissarmyutility.globalnavigation.AppFragment;
 
 import org.json.JSONException;
 
-import weathermodel.Weather;
+import com.swissarmyutility.weatherModel.Weather;
+
+import java.util.ArrayList;
 
 
 /**
@@ -41,8 +42,14 @@ public class WeatherFragment extends AppFragment {
     TextView windSpeed;
     TextView windDeg;
     ImageView imgView;
+    ListView list_ListOfEarlierDates;
+    LinearLayout listHeader;
     private static Criteria searchProviderCriteria = new Criteria();
     LocationManager locManager;
+    ListAdapterEarlierDates listAdapter;
+    ArrayList<Weather> weatherList;
+    Context mContext;
+
     static {
         searchProviderCriteria.setPowerRequirement(Criteria.POWER_LOW);
         searchProviderCriteria.setAccuracy(Criteria.ACCURACY_COARSE);
@@ -53,10 +60,12 @@ public class WeatherFragment extends AppFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //return the view here
 
-        View fragmentView = inflater.inflate(R.layout.fragment_weather_api,null);
+        View fragmentView = inflater.inflate(R.layout.fragment_weather,null);
 
+        weatherList = new ArrayList<Weather>();
         locManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 
+        list_ListOfEarlierDates = (ListView) fragmentView.findViewById(R.id.list_ListOfEarlierDates);
         cityText = (TextView) fragmentView.findViewById(R.id.cityText);
         conDesc = (TextView)fragmentView. findViewById(R.id.condDescr);
         temp = (TextView)fragmentView. findViewById(R.id.temp);
@@ -65,6 +74,8 @@ public class WeatherFragment extends AppFragment {
         windSpeed = (TextView) fragmentView.findViewById(R.id.windSpeed);
         windDeg = (TextView)fragmentView. findViewById(R.id.windDeg);
         imgView = (ImageView) fragmentView.findViewById(R.id.condIcon);
+        listHeader = (LinearLayout) fragmentView.findViewById(R.id.header_list);
+        listHeader.setVisibility(View.GONE);
 
         String provider = locManager.getBestProvider(searchProviderCriteria, true);
         locManager.requestSingleUpdate(provider, locListener, null);
@@ -110,7 +121,7 @@ public class WeatherFragment extends AppFragment {
 
     private class JSONWeatherTask extends AsyncTask<Integer, Void, Weather> {
 
-        Bitmap iconBmp;
+
         @Override
         protected Weather doInBackground(Integer... params) {
             Weather weather = new Weather();
@@ -121,9 +132,7 @@ public class WeatherFragment extends AppFragment {
                 weather = JsonWeatherParser.getWeather(data);
 
                 // Let's retrieve the icon
-//                weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
-
-                iconBmp = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+                weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -137,10 +146,17 @@ public class WeatherFragment extends AppFragment {
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
 
+
             if (weather.iconData != null && weather.iconData.length > 0) {
                 Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
-                imgView.setImageBitmap(iconBmp);
+                imgView.setImageBitmap(img);
             }
+
+            weatherList.add(weather);
+            listHeader.setVisibility(View.VISIBLE);
+
+
+
 
             cityText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
             conDesc.setText(" "+weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
@@ -149,6 +165,9 @@ public class WeatherFragment extends AppFragment {
             press.setText("Pressure: \t" + weather.currentCondition.getPressure() + " hPa");
             windSpeed.setText("Wind: \t" + weather.wind.getSpeed() + " mps");
             windDeg.setText("" + weather.wind.getDeg());
+
+            listAdapter = new ListAdapterEarlierDates(getActivity(),weatherList);
+           list_ListOfEarlierDates.setAdapter(listAdapter);
 
         }
 

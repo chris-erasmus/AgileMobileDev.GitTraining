@@ -2,8 +2,10 @@ package com.swissarmyutility.WeatherAPIcall;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -55,33 +57,36 @@ public class WeatherHttpClient {
 
     }
 
-    public Bitmap getImage(String code) {
+    public byte[] getImage(String code) {
         HttpURLConnection con = null ;
         InputStream is = null;
         try {
-            con = (HttpURLConnection) ( new URL(IMG_URL + code)).openConnection();
+
+            String url = IMG_URL + code + ".png";
+            Log.d("URL: ", url);
+            con = (HttpURLConnection) ( new URL(url)).openConnection();
             con.setRequestMethod("GET");
 //            con.setDoInput(true);
 //            con.setDoOutput(true);
             con.connect();
 
             // Let's read the response
-           /* is = con.getInputStream();
-            byte[] buffer = new byte[1024];
+            is = con.getInputStream();
+            byte[] buffer = new byte[40000];
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             while ( is.read(buffer) != -1)
-                baos.write(buffer);*/
+                baos.write(buffer);
 
-            URL url = new URL(IMG_URL + code);
+            /*URL url = new URL(IMG_URL + code);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
             connection.connect();
             InputStream input = con.getInputStream();
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
+            return myBitmap;*/
 
-//            return baos.toByteArray();
+            return baos.toByteArray();
         }
         catch(Throwable t) {
             t.printStackTrace();

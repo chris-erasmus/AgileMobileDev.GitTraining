@@ -7,6 +7,11 @@
     <string name="reset_btn">RESET</string>
     <string name="lap_btn">LAP</string>
 
+
+    <string name="city_header">City</string>
+    <string name="temp_header">Temparature</string>
+    <string name="humidity_header">Humidity</string>
+
     <string name="app_name">Swiss Army Knife Utility</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
