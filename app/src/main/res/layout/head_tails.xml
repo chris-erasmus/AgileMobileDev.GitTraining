@@ -2,7 +2,8 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_fragment_light_gray">
 
     <include
         android:id="@+id/header_layout"
@@ -77,6 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textColor="@color/background_profile_maroon"
                         android:padding="10dp"
                         android:textSize="30dp"/>
                 </LinearLayout>
@@ -106,6 +108,7 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:padding="10dp"
+                        android:textColor="@color/background_profile_maroon"
                         android:background="@drawable/rounded_background"
                         android:textSize="30dp"/>
                 </LinearLayout>

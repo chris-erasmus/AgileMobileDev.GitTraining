@@ -15,5 +15,8 @@
     <color name="side_bar_selection">#6D9A00</color>
     <color name="side_bar_gray">#656766</color>
     <color name="background_fragment_gray">#838383</color>
+    <color name="background_profile_black">#191919</color>
+    <color name="background_profile_maroon">#920110</color>
+    <color name="background_fragment_light_gray">#e9e9e9</color>
 
 </resources>

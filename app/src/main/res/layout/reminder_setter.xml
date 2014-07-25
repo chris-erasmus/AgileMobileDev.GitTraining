@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
 
     tools:context=".MyActivity"
-    android:background="@drawable/bg_calendar">
+    android:background="@color/background_fragment_light_gray">
 
 
     <include android:layout_width="match_parent"

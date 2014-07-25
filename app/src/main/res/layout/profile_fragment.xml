@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/profile_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/student_navigation_avatar_image"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.35"/>
+
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.65"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Welcome , "
+            android:id="@+id/textView" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Android Team"
+            android:id="@+id/textView2"
+             />
+    </LinearLayout>
+</LinearLayout>

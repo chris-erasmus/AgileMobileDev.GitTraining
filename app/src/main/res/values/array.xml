@@ -12,12 +12,9 @@
     <string-array name="sliding_menu_list_items">
         <item>Calculator</item>
         <item>Stopwatch</item>
-        <item>Metric Convertor</item>
         <item>TimeZone</item>
         <item>Heads/Tails</item>
         <item>Reminder Setter</item>
-        <item>Shopping List</item>
-        <item>Expenditure</item>
         <item>WeightTracker</item>
         <item>Dictionary</item>
     </string-array>

@@ -67,12 +67,11 @@ public class SlidingMenuFragment extends Fragment {
         appFragments = new ArrayList<AppFragment>();
         appFragments.add(new CalculatorFragment());
         appFragments.add(new StopWatchFragment());
-        appFragments.add(new MetricConvertorFragment());
+
         appFragments.add(new TimeZoneFragment());
         appFragments.add(new HeadTailsFragment());
         appFragments.add(new RemiderSetterFragment());
-        appFragments.add(new ShoppingListFragment());
-        appFragments.add(new ExpenditureFragment());
+
         appFragments.add(new WeightTrackerFragment());
         appFragments.add(new WordsmithDictionaryFragment());
         return view;
@@ -141,7 +140,7 @@ public class SlidingMenuFragment extends Fragment {
 
     class MenuListAdapter extends BaseAdapter{
         String listItemNames[] = SlidingMenuFragment.this.getActivity().getResources().getStringArray(R.array.sliding_menu_list_items);
-        int iconImages[] = {R.drawable.calculator,R.drawable.stopwatch, R.drawable.metric_convertor, R.drawable.time_zone, R.drawable.head_tails, R.drawable.reminder_setter, R.drawable.shopping_list, R.drawable.expenditure, R.drawable.weight_tracker, R.drawable.dictionary};
+        int iconImages[] = {R.drawable.calculator_ic,R.drawable.stopwatch_ic, R.drawable.timezone_ic, R.drawable.coin, R.drawable.calendar_ic, R.drawable.scale_ic, R.drawable.book_ic};
         LayoutInflater layoutInflater = null;
 
         public MenuListAdapter(){
