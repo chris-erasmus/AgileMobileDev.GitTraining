@@ -24,6 +24,7 @@ import com.swissarmyutility.ReminderSetter.RemiderSetterFragment;
 import com.swissarmyutility.ShoppingList.ShoppingListFragment;
 import com.swissarmyutility.StopWatch.StopWatchFragment;
 import com.swissarmyutility.TimeZone.TimeZoneFragment;
+import com.swissarmyutility.WeatherAPIcall.WeatherFragment;
 import com.swissarmyutility.WeightTracker.WeightTrackerFragment;
 import com.app.swissarmyutility.R;
 
@@ -71,7 +72,7 @@ public class SlidingMenuFragment extends Fragment {
         appFragments.add(new TimeZoneFragment());
         appFragments.add(new HeadTailsFragment());
         appFragments.add(new RemiderSetterFragment());
-
+        appFragments.add(new WeatherFragment());
         appFragments.add(new WeightTrackerFragment());
         appFragments.add(new WordsmithDictionaryFragment());
         return view;
