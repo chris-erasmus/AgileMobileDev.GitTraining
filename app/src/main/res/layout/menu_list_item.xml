@@ -11,7 +11,7 @@
         android:layout_height="40dp"
         android:src="@drawable/calculator_ic"
         android:scaleType="fitCenter"
-        android:layout_center="true"
+        android:layout_centerInParent="true"
         android:layout_alignParentLeft="true"/>
 
     <TextView
