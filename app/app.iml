@@ -66,6 +66,7 @@
     <orderEntry type="library" exported="" name="support-v4-13.0.0" level="project" />
     <orderEntry type="library" exported="" name="ormlite-android-4.31-javadoc" level="project" />
     <orderEntry type="library" exported="" name="ormlite-android-4.31" level="project" />
+    <orderEntry type="library" exported="" name="achartengine-1.0.0" level="project" />
     <orderEntry type="module" module-name="library" exported="" />
   </component>
 </module>
