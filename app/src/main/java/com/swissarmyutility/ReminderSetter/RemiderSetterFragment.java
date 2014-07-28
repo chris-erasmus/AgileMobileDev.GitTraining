@@ -1,20 +1,8 @@
 package com.swissarmyutility.ReminderSetter;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.swissarmyutility.globalnavigation.AppFragment;
-import com.app.swissarmyutility.R;
-
-/**
- * Created by Naresh.Kaushik on 16-07-2014.
- */
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Fragment;
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -32,12 +20,19 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.app.swissarmyutility.R;
+import com.swissarmyutility.globalnavigation.AppFragment;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+/**
+ * Created by Naresh.Kaushik on 16-07-2014.
+ */
 
 /**
  * Created by kapil.gupta on 23-07-2014.

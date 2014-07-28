@@ -7,10 +7,13 @@
     import android.view.ViewGroup;
     import android.widget.BaseAdapter;
     import android.widget.TextView;
-
     import com.app.swissarmyutility.R;
-
     import java.util.ArrayList;
+
+    /**
+     * Modifined by Navneet Srivastava on 23-07-2014.
+     *
+     */
 
     public class CustomAdapter extends BaseAdapter {
 
