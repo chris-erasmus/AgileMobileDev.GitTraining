@@ -44,7 +44,7 @@ public class WeatherFragment extends AppFragment {
     ListView list_ListOfEarlierDates;
     LinearLayout listHeader;
     private static Criteria searchProviderCriteria = new Criteria();
-    LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+    LocationManager locationManager;
     ListAdapterEarlierDates listAdapter;
     ArrayList<Weather> weatherList;
     Context mContext;
@@ -73,6 +73,7 @@ public class WeatherFragment extends AppFragment {
         listHeader = (LinearLayout) fragmentView.findViewById(R.id.header_list);
         listHeader.setVisibility(View.GONE);
 
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         String provider = locationManager.getBestProvider(searchProviderCriteria, true);
         locationManager.requestSingleUpdate(provider, locListener, null);
 
