@@ -9,8 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.app.swissarmyutility.R;
-import com.swissarmyutility.weatherModel.Weather;
-
+import com.swissarmyutility.dataModel.WeatherData;
 import java.util.ArrayList;
 
 /**
@@ -18,11 +17,11 @@ import java.util.ArrayList;
  */
 public class ListAdapterEarlierDates extends BaseAdapter {
 
-    ArrayList<Weather> weathersList;
+    ArrayList<WeatherData> weathersList;
     Context mContext;
     LayoutInflater layoutInflater;
 
-    public ListAdapterEarlierDates(Context mContext, ArrayList<Weather> weatherList) {
+    public ListAdapterEarlierDates(Context mContext, ArrayList<WeatherData> weatherList) {
 
         this.mContext = mContext;
         this.weathersList = weatherList;
@@ -66,8 +65,7 @@ public class ListAdapterEarlierDates extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-
-        Weather mWeather = weathersList.get(position);
+        WeatherData mWeather = weathersList.get(position);
 
         holder.textViewCity.setText(mWeather.location.getCity() + ", " + mWeather.location.getCountry());
         holder.textViewTemparature.setText(Math.round((mWeather.temperature.getTemp()

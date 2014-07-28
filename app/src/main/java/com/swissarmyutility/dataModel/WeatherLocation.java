@@ -1,4 +1,4 @@
-package com.swissarmyutility.weatherModel;
+package com.swissarmyutility.dataModel;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  *
  */
-public class Location implements Serializable {
+public class WeatherLocation implements Serializable {
 
 	private float longitude;
 	private float latitude;

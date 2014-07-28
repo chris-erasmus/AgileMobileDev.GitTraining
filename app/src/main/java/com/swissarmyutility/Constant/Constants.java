@@ -16,4 +16,9 @@ public class Constants {
     public static final int HTTP_STATUS_US = 2;
     public static final int HTTP_STATUS_SA = 3;
 
+    // Url's for weather api calls
+    public static String WEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/weather?";
+    public static String WEATHER_IMG_URL = "http://openweathermap.org/img/w/";
+    public static String WEATHER_API_KEY = "a67ef4410f337698c7d4feeaa5fcbf01";
+
 }
