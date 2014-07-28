@@ -5,7 +5,7 @@
     <dimen name="activity_horizontal_margin">64dp</dimen>
 
     <dimen name="slidingmenu_offset">1000dp</dimen>
-<dimen name="buttonTextSize">80sp</dimen>
+<dimen name="buttonTextSize">75sp</dimen>
     <dimen name="editTextSize">120sp</dimen>
 
 </resources>

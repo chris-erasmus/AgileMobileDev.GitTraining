@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_above="@+id/btnEquals"
+        android:layout_alignParentBottom="true"
         >
         <!-- Input EditText Panel -->
         <RelativeLayout
@@ -49,45 +49,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/btnSeven"
-                android:textSize="@dimen/buttonTextSize"
-                android:id="@+id/btnSeven"
-                />
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/btnEight"
-                android:textSize="@dimen/buttonTextSize"
-                android:id="@+id/btnEight" />
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/btnNine"
-                android:textSize="@dimen/buttonTextSize"
-                android:id="@+id/btnNine" />
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/btnDivide"
-                android:textSize="@dimen/buttonTextSize"
-                android:id="@+id/btnDivide" />
-            </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            >
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/btnFour"
                 android:gravity="center"
                 android:textSize="@dimen/buttonTextSize"
@@ -114,14 +75,41 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/btnMultiply"
+                android:text="@string/btnSeven"
                 android:textSize="@dimen/buttonTextSize"
-                android:id="@+id/btnMultiply" />
-        </LinearLayout>
+                android:id="@+id/btnSeven"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/btnEight"
+                android:textSize="@dimen/buttonTextSize"
+                android:id="@+id/btnEight" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/btnNine"
+                android:textSize="@dimen/buttonTextSize"
+                android:id="@+id/btnNine" />
+            </LinearLayout>
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/btnZero"
+                android:textSize="@dimen/buttonTextSize"
+                android:id="@+id/btnZero" />
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -152,9 +140,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/btnSubtract"
+                android:text="@string/btnClear"
                 android:textSize="@dimen/buttonTextSize"
-                android:id="@+id/btnSubtract" />
+                android:id="@+id/btnClear"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btnDot"
+                android:textSize="@dimen/buttonTextSize"
+                android:id="@+id/btnDot" />
         </LinearLayout>
         <LinearLayout
             android:layout_weight="1"
@@ -165,25 +161,25 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/btnClear"
+                android:text="@string/btnMultiply"
                 android:textSize="@dimen/buttonTextSize"
-                android:id="@+id/btnClear"
-                />
+                android:id="@+id/btnMultiply" />
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/btnZero"
+                android:text="@string/btnSubtract"
                 android:textSize="@dimen/buttonTextSize"
-                android:id="@+id/btnZero" />
+                android:id="@+id/btnSubtract" />
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btnDot"
+                android:gravity="center"
+                android:text="@string/btnDivide"
                 android:textSize="@dimen/buttonTextSize"
-                android:id="@+id/btnDot" />
+                android:id="@+id/btnDivide" />
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -192,16 +188,18 @@
                 android:text="@string/btnAdd"
                 android:textSize="@dimen/buttonTextSize"
                 android:id="@+id/btnAdd" />
+            <Button
+                android:id="@+id/btnEquals"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btnEquals"
+                android:textSize="@dimen/buttonTextSize"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_alignParentBottom="true"
+                />
         </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <Button
-        android:id="@+id/btnEquals"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btnEquals"
-        android:textSize="@dimen/buttonTextSize"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        />
+
 </RelativeLayout>
