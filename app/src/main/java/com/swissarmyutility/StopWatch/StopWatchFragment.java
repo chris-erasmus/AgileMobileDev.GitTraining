@@ -9,12 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ListView;
-
 import com.app.swissarmyutility.R;
 import com.swissarmyutility.globalnavigation.AppFragment;
-
 import java.util.ArrayList;
-
 
 /**
  * Created by Naresh.Kaushik on 16-07-2014.
