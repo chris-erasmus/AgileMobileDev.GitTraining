@@ -2,10 +2,10 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="D:\ANDROID\SOUTH AFRICA PROJ\masterUtilityApp\library\assets" />
+        <source path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\assets" />
     </dataSet>
     <dataSet config="release" >
-        <source path="D:\ANDROID\SOUTH AFRICA PROJ\masterUtilityApp\library\src\release\assets" />
+        <source path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\src\release\assets" />
     </dataSet>
 
 </merger>

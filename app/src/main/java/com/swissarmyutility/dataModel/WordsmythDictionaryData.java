@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by piyush.sharma on 7/16/2014.
  */
-public class DictionaryData
+public class WordsmythDictionaryData
 {
     String headWord;
     ArrayList<Spelling> spellingList;

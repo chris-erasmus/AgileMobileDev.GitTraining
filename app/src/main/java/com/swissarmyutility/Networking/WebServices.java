@@ -7,7 +7,7 @@ package com.swissarmyutility.Networking;
 
 
 import com.swissarmyutility.Parser.DictionaryDataParser;
-import com.swissarmyutility.dataModel.DictionaryData;
+import com.swissarmyutility.dataModel.WordsmythDictionaryData;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -19,6 +19,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
 
 public class WebServices
 {
@@ -26,6 +27,10 @@ public class WebServices
     public static String MUSIC_URL = "http://www.moviesoundclips.net/effects/weapons/riflecock-1.wav";
     public static String IMAGE_URL = "http://kids.wordsmyth.net/media/wcdt/image/";
     private static WebServices mSingletonWebServicesInstance;
+
+    HttpClient mHttpClient;
+    HttpGet mHttpGet;
+
     private WebServices()
     {
 
@@ -36,24 +41,31 @@ public class WebServices
         if(mSingletonWebServicesInstance == null)
         {
             mSingletonWebServicesInstance = new WebServices();
+            mSingletonWebServicesInstance.initializeHttpClientAndHttpGetObject();
         }
         return mSingletonWebServicesInstance;
     }
+
+   private void initializeHttpClientAndHttpGetObject()
+   {
+        mHttpClient = new DefaultHttpClient();
+        mHttpGet = new HttpGet();
+   }
 
     private String fetchXMLData(String dataURL)
     {
         String xmlString = "";
         try {
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(dataURL);
-            StringBuffer dataBuffer = new StringBuffer();
+
+            mHttpGet.setURI(new URI(dataURL));
+            StringBuilder dataBuffer = new StringBuilder();
             String currentDataLine = "";
             HttpResponse serverDataResponse = null;
-            serverDataResponse = httpClient.execute(httpGet);
+            serverDataResponse = mHttpClient.execute(mHttpGet);
             System.out.println(serverDataResponse.getStatusLine());
-            HttpEntity entity2 = serverDataResponse.getEntity();
+            HttpEntity httpResponseEntity = serverDataResponse.getEntity();
             BufferedReader bufferReader = null;
-            bufferReader = new BufferedReader(new InputStreamReader(entity2.getContent()));
+            bufferReader = new BufferedReader(new InputStreamReader(httpResponseEntity.getContent()));
             while ((currentDataLine = bufferReader.readLine()) != null)
             {
                 dataBuffer.append(currentDataLine);
@@ -71,9 +83,9 @@ public class WebServices
         return xmlString;
     }
 
-    public DictionaryData getDictionaryData(String searchString)
+    public WordsmythDictionaryData getDictionaryData(String searchString)
     {
-        DictionaryData dictionaryData = null;
+        WordsmythDictionaryData dictionaryData = null;
         String searchURL = DICTIONARY_URL.replace("%s",searchString);
         String placesJsonData = fetchXMLData(searchURL);
         if(placesJsonData != null)
