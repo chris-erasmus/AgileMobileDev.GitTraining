@@ -38,7 +38,6 @@ import java.util.List;
  * Created by Naresh.Kaushik on 16-07-2014.
  */
 public class WeightTrackerFragment extends AppFragment {
-
     private EditText etWeight;
     private Button btnTrade;
     private ListView list;
@@ -47,7 +46,6 @@ public class WeightTrackerFragment extends AppFragment {
     List<WeightTrackModel> allWishLists;
     private LinearLayout user_graph;
     private WeightTrackModel weightTrackModel;
-
      @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //return the view here
@@ -55,32 +53,22 @@ public class WeightTrackerFragment extends AppFragment {
         etWeight = (EditText) view.findViewById(R.id.weight_tracker_et_weight);
         btnTrade = (Button) view.findViewById(R.id.weight_tracker_btn_trade);
         list = (ListView) view.findViewById(R.id.weight_tracker_list_view);
-
-
         sdfTime = new SimpleDateFormat("dd-MM-yyyy HH-mm");
         user_graph = (LinearLayout) view.findViewById(R.id.chart_container1);
         DatabaseManager.init(getActivity());
         AddingAdapter();
-
-
     btnTrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(!etWeight.getText().toString().equals("")){
                     String time = sdfTime.format(Calendar.getInstance().getTime());
-                    Log.e("TimePresend::", time);
                     weightTrackModel = new WeightTrackModel();
                     weightTrackModel.setTime(time);
                     weightTrackModel.setWeight(etWeight.getText().toString());
-
                     DatabaseManager.getInstance().addWeightTrackList(weightTrackModel);
                     allWishLists.clear();
-
-
                     for(WeightTrackModel wishListItem: allWishLists)
                     {
-                        System.out.println("MyTimestamp :"+wishListItem.getTime());
                         Toast.makeText(getActivity(),""+wishListItem.getTime(),Toast.LENGTH_SHORT).show();
                     }
                     weightTrackerAdapter.notifyDataSetChanged();
@@ -93,7 +81,6 @@ public class WeightTrackerFragment extends AppFragment {
             }
         });
         return view;
-
     }
 
     /**
@@ -133,31 +120,21 @@ public class WeightTrackerFragment extends AppFragment {
         for(int i=0;i<valuesList.size();i++)
         {
             String weightVal = valuesList.get(i).getWeight();
-
-
             valueArray1[i] = Double.parseDouble(weightVal);
             String timeArray = valuesList.get(i).getTime();
-
             valueArray_time[i] = Double.parseDouble(""+i);
         }
-
         String[] titles = new String[] {"Weight Graph"};
         List<double[]> x = new ArrayList<double[]>();
         List<double[]> values = new ArrayList<double[]>();
-
         x.add( valueArray_time );
         values.add(valueArray1);
-
-
         int[] colors = new int[] { Color.GREEN };
         PointStyle[] styles = new PointStyle[] { PointStyle.X };
         XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
-
         renderer.setPointSize(0f);  // to  increase the size of the Circle
         renderer.setPanLimits(valueArray1);
-
         int length = renderer.getSeriesRendererCount();
-
         for (int i = 0; i < length; i++) {
             XYSeriesRenderer r = (XYSeriesRenderer) renderer
                     .getSeriesRendererAt(i);
@@ -169,7 +146,6 @@ public class WeightTrackerFragment extends AppFragment {
 
         renderer.setXLabels(12);
         renderer.setYLabels(10);
-
         renderer.setShowGrid(true);
         renderer.setXLabelsAlign(Paint.Align.RIGHT);
         renderer.setYLabelsAlign(Paint.Align.RIGHT);
@@ -181,21 +157,13 @@ public class WeightTrackerFragment extends AppFragment {
         renderer.setClickEnabled(false);
         renderer.setLabelsColor(Color.BLACK);
         renderer.setMarginsColor(Color.argb(0, 250, 250, 250));
-
-
         renderer.setBarSpacing(0.5);
-
         XYMultipleSeriesDataset dataset = buildDataset(titles, x, values);
-
         String[] types = new String[] {  CubicLineChart.TYPE };
-
         final GraphicalView grfv = ChartFactory.getCombinedXYChartView(
                 getActivity(), dataset, renderer, types);
-
         user_graph.addView(grfv);
     }
-
-
     // Set only the names of the lines
     protected XYMultipleSeriesDataset buildDataset(String[] titles,
                                                    List<double[]> xValues, List<double[]> yValues) {
@@ -203,7 +171,6 @@ public class WeightTrackerFragment extends AppFragment {
         addXYSeries(dataset, titles, xValues, yValues, 0);
         return dataset;
     }
-
     public void addXYSeries(XYMultipleSeriesDataset dataset, String[] titles,
                             List<double[]> xValues, List<double[]> yValues, int scale) {
         int length = titles.length;
@@ -218,7 +185,6 @@ public class WeightTrackerFragment extends AppFragment {
             dataset.addSeries(series);
         }
     }
-
     protected XYMultipleSeriesRenderer buildBarRenderer(int[] colors) {
         XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
         renderer.setAxisTitleTextSize(16);
@@ -233,14 +199,12 @@ public class WeightTrackerFragment extends AppFragment {
         }
         return renderer;
     }
-
     protected XYMultipleSeriesRenderer buildRenderer(int[] colors,
                                                      PointStyle[] styles) {
         XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
         setRenderer(renderer, colors, styles);
         return renderer;
     }
-
     protected void setRenderer(XYMultipleSeriesRenderer renderer, int[] colors,
                                PointStyle[] styles) {
         renderer.setAxisTitleTextSize(16);
@@ -248,9 +212,7 @@ public class WeightTrackerFragment extends AppFragment {
         renderer.setLabelsTextSize(15);
         renderer.setLegendTextSize(15);
         renderer.setPointSize(5f);
-
         renderer.setMargins(new int[] { 20, 30, 15, 20 });
-
         int length = colors.length;
         for (int i = 0; i < length; i++) {
             XYSeriesRenderer r = new XYSeriesRenderer();
@@ -259,7 +221,6 @@ public class WeightTrackerFragment extends AppFragment {
             renderer.addSeriesRenderer(r);
         }
     }
-
     protected void setChartSettings(XYMultipleSeriesRenderer renderer,
                                     String title, String xTitle, String yTitle, double xMin,
                                     double xMax, double yMin, double yMax, int axesColor,
@@ -267,17 +228,12 @@ public class WeightTrackerFragment extends AppFragment {
         renderer.setChartTitle(title);
         renderer.setXTitle(xTitle);
         renderer.setYTitle(yTitle);
-
         for (int i=0;i<xMax;i++){
             renderer.addYTextLabel(i, "10%");
         }
         for (int i=0;i<yMax;i++){
             renderer.addYTextLabel(i, "20%");
         }
-
-
-
-        Log.e("Xmax",""+xMax);
         renderer.setAxesColor(axesColor);
         renderer.setLabelsColor(labelsColor);
     }

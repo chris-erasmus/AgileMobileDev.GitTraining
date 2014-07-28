@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.app.swissarmyutility.R;
 import com.swissarmyutility.Networking.WebServices;
 import com.swissarmyutility.Utility.ImageLoader;
-import com.swissarmyutility.Utility.Utility;
+import com.swissarmyutility.Utility.NetworkConnection;
 import com.swissarmyutility.dataModel.DictionaryData;
 import com.swissarmyutility.dataModel.Part;
 import com.swissarmyutility.dataModel.Pronunciation;
@@ -75,7 +75,7 @@ public class WordsmithDictionaryFragment extends AppFragment {
 
                 if(!mSearchText.getText().toString().equalsIgnoreCase(""))
                 {
-                    if(Utility.isNetworkAvailable(getActivity())) {
+                    if(NetworkConnection.isNetworkAvailable(getActivity())) {
                         inputMethodManger.hideSoftInputFromWindow(mSearchText.getWindowToken(), 0);
 
                         if(pronunciationsLayout.getChildCount() > 0)

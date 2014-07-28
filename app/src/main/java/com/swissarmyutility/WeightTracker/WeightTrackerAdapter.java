@@ -25,12 +25,10 @@ public class WeightTrackerAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-
         return allWishLists.size();
     }
     @Override
     public Object getItem(int position) {
-
         return allWishLists.get(position);
     }
     @Override
@@ -39,7 +37,6 @@ public class WeightTrackerAdapter extends BaseAdapter {
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         View view;
         ViewHolder holder;
         LayoutInflater inflater = (LayoutInflater) mContext

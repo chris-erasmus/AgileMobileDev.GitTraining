@@ -5,9 +5,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 /**
- * Created by piyush.sharma on 7/18/2014.
+ * Created by hemant.bareja on 28-07-2014.
  */
-public class Utility {
+public class NetworkConnection {
 
     public static boolean isNetworkAvailable(Context inContext)
     {

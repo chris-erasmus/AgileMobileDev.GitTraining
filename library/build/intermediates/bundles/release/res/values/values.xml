@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/D:/vinod/AgileMobileDev.GitTraining/library/res/values/attrs.xml -->
+    <!-- From: file:/D:/WorkSpace_UtilityApp/28July2014/library/res/values/attrs.xml -->
     <eat-comment />
 
     <declare-styleable name="SlidingMenu">
@@ -31,7 +31,7 @@
         <attr name="selectorEnabled" format="boolean" />
         <attr name="selectorDrawable" format="reference" />
     </declare-styleable>
-    <!-- From: file:/D:/vinod/AgileMobileDev.GitTraining/library/res/values/ids.xml -->
+    <!-- From: file:/D:/WorkSpace_UtilityApp/28July2014/library/res/values/ids.xml -->
     <eat-comment />
 
     <item name="selected_view" type="id"/>
