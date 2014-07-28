@@ -16,18 +16,17 @@ import java.util.ArrayList;
 /**
  * Created by Vinod.sakala on 7/24/2014.
  */
-public class ListAdapterEarlierDates extends BaseAdapter{
+public class ListAdapterEarlierDates extends BaseAdapter {
 
     ArrayList<Weather> weathersList;
     Context mContext;
     LayoutInflater layoutInflater;
 
-    public ListAdapterEarlierDates(Context mContext ,ArrayList<Weather> weatherList)
-    {
+    public ListAdapterEarlierDates(Context mContext, ArrayList<Weather> weatherList) {
 
-        this.mContext = mContext ;
+        this.mContext = mContext;
         this.weathersList = weatherList;
-        layoutInflater= (LayoutInflater)mContext
+        layoutInflater = (LayoutInflater) mContext
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -46,37 +45,35 @@ public class ListAdapterEarlierDates extends BaseAdapter{
         return 0;
     }
 
-    private class ViewHolder
-    {
-        TextView tvCity;
-        TextView tvTemp;
-        TextView tvHumidity;
+    private class ViewHolder {
+        TextView textViewCity;
+        TextView textViewTemparature;
+        TextView textViewHumidity;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
 
-        ViewHolder vholder = null;
-        if(convertView == null)
-        {
+        ViewHolder holder = null;
+        if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.weatherlayout_list_item, null);
-            vholder = new ViewHolder();
-            vholder.tvCity = (TextView)convertView.findViewById(R.id.tvCity);
-            vholder.tvHumidity= (TextView)convertView.findViewById(R.id.tvHumidity);
-            vholder.tvTemp = (TextView)convertView.findViewById(R.id.tvTemp);
-            convertView.setTag(vholder);
-        }
-        else
-        {
-            vholder = (ViewHolder)convertView.getTag();
+            holder = new ViewHolder();
+            holder.textViewCity = (TextView) convertView.findViewById(R.id.tvCity);
+            holder.textViewHumidity = (TextView) convertView.findViewById(R.id.tvHumidity);
+            holder.textViewTemparature = (TextView) convertView.findViewById(R.id.tvTemp);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
 
         Weather mWeather = weathersList.get(position);
 
-        vholder.tvCity .setText(mWeather.location.getCity() + ", " + mWeather.location.getCountry());
-        vholder.tvTemp . setText(Math.round((mWeather.temperature.getTemp() - 273.15)) + "\u2103");
-        vholder.tvHumidity.setText(mWeather.currentCondition.getHumidity() + "%");
+        holder.textViewCity.setText(mWeather.location.getCity() + ", " + mWeather.location.getCountry());
+        holder.textViewTemparature.setText(Math.round((mWeather.temperature.getTemp()
+                - 273.15)) + "\u2103");  // 'u2103' to display the centigrade symbol
+
+        holder.textViewHumidity.setText(mWeather.currentCondition.getHumidity() + "%");
 
         return convertView;
     }

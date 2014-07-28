@@ -18,8 +18,6 @@ public class Weather {
 		private String condition;
 		private String descr;
 		private String icon;
-		
-		
 		private float pressure;
 		private float humidity;
 		
@@ -59,8 +57,7 @@ public class Weather {
 		public void setHumidity(float humidity) {
 			this.humidity = humidity;
 		}
-		
-		
+
 	}
 	
 	public  class Temperature {
@@ -104,8 +101,6 @@ public class Weather {
 		public void setDeg(float deg) {
 			this.deg = deg;
 		}
-		
-		
 	}
 	
 	public  class Rain {
@@ -123,15 +118,11 @@ public class Weather {
 		public void setAmmount(float ammount) {
 			this.ammount = ammount;
 		}
-		
-		
-		
 	}
 
 	public  class Snow {
 		private String time;
 		private float ammount;
-		
 		public String getTime() {
 			return time;
 		}
@@ -144,22 +135,16 @@ public class Weather {
 		public void setAmmount(float ammount) {
 			this.ammount = ammount;
 		}
-		
-		
 	}
 	
 	public  class Clouds {
 		private int perc;
-
 		public int getPerc() {
 			return perc;
 		}
-
-		public void setPerc(int perc) {
+        public void setPerc(int perc) {
 			this.perc = perc;
 		}
-		
-		
 	}
 
 }

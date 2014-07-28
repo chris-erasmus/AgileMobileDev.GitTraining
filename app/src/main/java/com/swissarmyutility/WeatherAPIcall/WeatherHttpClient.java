@@ -22,12 +22,12 @@ public class WeatherHttpClient {
 
 
     public String getWeatherData(int lat, int lon) {
-        HttpURLConnection con = null ;
+        HttpURLConnection con = null;
         InputStream is = null;
 
         try {
-            String resultURL = BASE_URL+"lat="+lat+"&lon="+lon+"&APPID="+API_KEY;
-            con = (HttpURLConnection) ( new URL(resultURL)).openConnection();
+            String resultURL = BASE_URL + "lat=" + lat + "&lon=" + lon + "&APPID=" + API_KEY;
+            con = (HttpURLConnection) (new URL(resultURL)).openConnection();
             con.setRequestMethod("GET");
             con.setDoInput(true);
             con.setDoOutput(true);
@@ -38,19 +38,23 @@ public class WeatherHttpClient {
             is = con.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String line = null;
-            while (  (line = br.readLine()) != null )
+            while ((line = br.readLine()) != null)
                 buffer.append(line + "\r\n");
 
             is.close();
             con.disconnect();
             return buffer.toString();
-        }
-        catch(Throwable t) {
+        } catch (Throwable t) {
             t.printStackTrace();
-        }
-        finally {
-            try { is.close(); } catch(Throwable t) {}
-            try { con.disconnect(); } catch(Throwable t) {}
+        } finally {
+            try {
+                is.close();
+            } catch (Throwable t) {
+            }
+            try {
+                con.disconnect();
+            } catch (Throwable t) {
+            }
         }
 
         return null;
@@ -58,16 +62,13 @@ public class WeatherHttpClient {
     }
 
     public byte[] getImage(String code) {
-        HttpURLConnection con = null ;
+        HttpURLConnection con = null;
         InputStream is = null;
         try {
 
             String url = IMG_URL + code + ".png";
-            Log.d("URL: ", url);
-            con = (HttpURLConnection) ( new URL(url)).openConnection();
+            con = (HttpURLConnection) (new URL(url)).openConnection();
             con.setRequestMethod("GET");
-//            con.setDoInput(true);
-//            con.setDoOutput(true);
             con.connect();
 
             // Let's read the response
@@ -75,28 +76,22 @@ public class WeatherHttpClient {
             byte[] buffer = new byte[40000];
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-            while ( is.read(buffer) != -1)
+            while (is.read(buffer) != -1)
                 baos.write(buffer);
 
-            /*URL url = new URL(IMG_URL + code);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = con.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;*/
-
             return baos.toByteArray();
-        }
-        catch(Throwable t) {
+        } catch (Throwable t) {
             t.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (Throwable t) {
+            }
+            try {
+                con.disconnect();
+            } catch (Throwable t) {
+            }
         }
-        finally {
-            try { is.close(); } catch(Throwable t) {}
-            try { con.disconnect(); } catch(Throwable t) {}
-        }
-
         return null;
-
     }
 }

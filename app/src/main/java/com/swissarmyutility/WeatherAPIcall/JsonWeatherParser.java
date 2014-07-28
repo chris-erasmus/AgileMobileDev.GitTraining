@@ -65,7 +65,7 @@ public class JsonWeatherParser {
     }
 
 
-    private static JSONObject getObject(String tagName, JSONObject jObj)  throws JSONException {
+    private static JSONObject getObject(String tagName, JSONObject jObj) throws JSONException {
         JSONObject subObj = jObj.getJSONObject(tagName);
         return subObj;
     }
@@ -74,11 +74,11 @@ public class JsonWeatherParser {
         return jObj.getString(tagName);
     }
 
-    private static float  getFloat(String tagName, JSONObject jObj) throws JSONException {
+    private static float getFloat(String tagName, JSONObject jObj) throws JSONException {
         return (float) jObj.getDouble(tagName);
     }
 
-    private static int  getInt(String tagName, JSONObject jObj) throws JSONException {
+    private static int getInt(String tagName, JSONObject jObj) throws JSONException {
         return jObj.getInt(tagName);
     }
 
