@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.swissarmyutility.Constant.Constants;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -16,17 +18,12 @@ import java.net.URL;
  */
 public class WeatherHttpClient {
 
-    private static String BASE_URL = "http://api.openweathermap.org/data/2.5/weather?";
-    private static String IMG_URL = "http://openweathermap.org/img/w/";
-    private static String API_KEY = "a67ef4410f337698c7d4feeaa5fcbf01";
-
-
     public String getWeatherData(int lat, int lon) {
         HttpURLConnection con = null;
         InputStream is = null;
 
         try {
-            String resultURL = BASE_URL + "lat=" + lat + "&lon=" + lon + "&APPID=" + API_KEY;
+            String resultURL = Constants.WEATHER_BASE_URL + "lat=" + lat + "&lon=" + lon + "&APPID=" + Constants.WEATHER_API_KEY;
             con = (HttpURLConnection) (new URL(resultURL)).openConnection();
             con.setRequestMethod("GET");
             con.setDoInput(true);
@@ -66,7 +63,7 @@ public class WeatherHttpClient {
         InputStream is = null;
         try {
 
-            String url = IMG_URL + code + ".png";
+            String url = Constants.WEATHER_IMG_URL + code + ".png";
             con = (HttpURLConnection) (new URL(url)).openConnection();
             con.setRequestMethod("GET");
             con.connect();

@@ -8,14 +8,14 @@ import java.util.ArrayList;
 /**
  * Created by piyush.sharma on 7/16/2014.
  */
-public class DictionaryData
+public class WordsmythDictionaryData
 {
-    String headWord;
-    ArrayList<Spelling> spellingList;
-    ArrayList<Pronunciation> pronunciationList;
-    ArrayList<Part> partList;
-    ArrayList<String> featuresWordHistoryList;
-    ArrayList<WePhrase> wePhraseList;
+    private String headWord;
+    private ArrayList<Spelling> spellingList;
+    private ArrayList<Pronunciation> pronunciationList;
+    private ArrayList<Part> partList;
+    private ArrayList<String> featuresWordHistoryList;
+    private ArrayList<WePhrase> wePhraseList;
 
     public String getHeadWord() {
         return headWord;

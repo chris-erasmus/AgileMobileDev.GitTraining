@@ -16,4 +16,50 @@ public class Constants {
     public static final int HTTP_STATUS_US = 2;
     public static final int HTTP_STATUS_SA = 3;
 
+
+    // Wordsmith's Dictionary constants
+    public static  String ENTRY = "entry";
+    public static  String SPELLINGS = "spellings";
+    public static  String SPELLING = "spelling";
+    public static  String PRONUNCIATIONS = "pronunciations";
+    public static  String PRONUNCIATION = "pronunciation";
+    public static  String PARTS = "parts";
+    public static  String PART = "part";
+    public static  String SENSES = "senses";
+    public static  String SENSE = "sense";
+    public static  String SPANISH = "spanish";
+    public static  String FEATURES = "features";
+    public static  String WORD_HISTORY = "wordhistory";
+    public static  String WORD_EXPLORER = "wordexplorer";
+    public static  String WE_PHRASE = "wephrase";
+    public static  String HEAD_WORD = "headword";
+    public static  String SPELL = "spell";
+    public static  String SYLLABLE = "syllable";
+    public static  String STRESS = "stress";
+    public static  String SOUND = "sound";
+    public static  String NAME = "name";
+    public static  String NAMES = "names";
+    public static  String RELATED_WORD = "relatedword";
+    public static  String RELATED_WORDS = "relatedwords";
+    public static  String DEFINITION = "definition";
+    public static  String TRANSLATION = "translation";
+    public static  String TRANSLATIONS = "translations";
+    public static  String EXAMPLE = "example";
+    public static  String EXAMPLES = "examples";
+    public static  String IMAGE = "image";
+    public static  String IMAGES = "images";
+    public static  String SYNONYM = "synonym";
+    public static  String SYNONYMS = "synonyms";
+    public static  String SIMILAR_WORD = "similarword";
+    public static  String SIMILAR_WORDS = "similarwords";
+    public static  String TITLE = "title";
+    public static  String WE_WORD = "weword";
+    public static  String WE_WORDS = "wewords";
+
+    // Url's for weather api calls
+    public static String WEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/weather?";
+    public static String WEATHER_IMG_URL = "http://openweathermap.org/img/w/";
+    public static String WEATHER_API_KEY = "a67ef4410f337698c7d4feeaa5fcbf01";
+
+
 }

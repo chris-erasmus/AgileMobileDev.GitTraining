@@ -13,46 +13,51 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.swissarmyutility.R;
-import com.swissarmyutility.HeadTails.AnimationLib.Animation.ResultState;
-import com.swissarmyutility.HeadTails.AnimationLib.Coin;
-import com.swissarmyutility.HeadTails.AnimationLib.CustomAnimationDrawable;
+import com.swissarmyutility.HeadTails.CoinFlipAnimation.ResultState;
 import com.swissarmyutility.data.DatabaseManager;
-import com.swissarmyutility.dataModel.HeadTailModel;
 import com.swissarmyutility.globalnavigation.AppFragment;
 
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Naresh.Kaushik on 16-07-2014.
  */
 public class HeadTailsFragment extends AppFragment {
-    View fragmentView;
-    HeadTailModel headTailModel;
-    Animation scaleAnimation;
+    //View of the fragment
+    private View fragmentView;
+
+    private CoinDao coinDao;
+    private Animation scaleAnimation;
+    private Boolean currentResult = true;
+    private Boolean previousResult = true;
+    private ImageView coinImage;
+    private CustomAnimationDrawable coinAnimationCustom;
+    private int headsCounter;
+    private int tailsCounter;
+    private boolean flipResult;
+    TextView headResultTextView,tailResultTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.head_tails,null);
-        //return the view here
         return fragmentView;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         setTitle("Head/Tails");
-        DatabaseManager.init(getActivity());
-        headTailModel = new HeadTailModel();
-        int t=0,h=0;
-        List<HeadTailModel> headTailModels = DatabaseManager.getInstance().getAllWatchLists();
-        for(int i = 0;i<headTailModels.size();i++){
-            if(headTailModels.get(i).getToss() == 0)
-                t++;
+
+        coinDao = new CoinDao();
+        tailsCounter=0;
+        headsCounter=0;
+        List<CoinDao> coinDaos = DatabaseManager.getInstance(getActivity()).getAllFlipResults();
+        for(int i = 0;i<coinDaos.size();i++){
+            if(coinDaos.get(i).getFlipResult())
+                headsCounter++;
             else
-                h++;
+                tailsCounter++;
         }
-        tailsCounter = t;
-        headsCounter = h;
         initView();
 
         scaleAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.scale);
@@ -70,87 +75,51 @@ public class HeadTailsFragment extends AppFragment {
         });
 
 
-        ((TextView)fragmentView.findViewById(R.id.tail_count)).setText(String.valueOf(tailsCounter));
-        ((TextView)fragmentView.findViewById(R.id.head_count)).setText(String.valueOf(headsCounter));
-        com.swissarmyutility.HeadTails.AnimationLib.Animation.init();
-        coinImagesMap = new EnumMap<ResultState, Drawable>(ResultState.class);
+        headResultTextView = (TextView)fragmentView.findViewById(R.id.head_count);
+        tailResultTextView = (TextView)fragmentView.findViewById(R.id.tail_count);
+        headResultTextView.setText(String.valueOf(tailsCounter));
+        tailResultTextView.setText(String.valueOf(headsCounter));
+
         loadResources();
     }
 
-    public void onAnimationEnd(){
-        if(flipResult) {
-            ((TextView)fragmentView.findViewById(R.id.head_count)).setText(String.valueOf(headsCounter));
-            ((TextView)fragmentView.findViewById(R.id.head_count)).startAnimation(scaleAnimation);
-            headTailModel.setToss(1);
-        }else {
-            ((TextView)fragmentView.findViewById(R.id.tail_count)).setText(String.valueOf(tailsCounter));
-            ((TextView)fragmentView.findViewById(R.id.tail_count)).startAnimation(scaleAnimation);
-            headTailModel.setToss(0);
-        }
-        DatabaseManager.getInstance().addWishLi(headTailModel);
-    }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+    // load resources internal to the CoinFlip package
+    private void loadResources() {
+        // load the images
+        final Drawable heads = getResources().getDrawable(R.drawable.head);
+        final Drawable tails = getResources().getDrawable(R.drawable.tail);
+        final Drawable edge = getResources().getDrawable(R.drawable.edge);
+        final Drawable background = getResources().getDrawable(R.drawable.background);
 
+        // render the animation for each result state and store it in the
+        // animations map
+
+        CoinFlipAnimation.generateAnimations(heads, tails, edge, background);
     }
 
-
-    //=======//
-    EnumMap<ResultState, Drawable> coinImagesMap;
-
-    private final Coin theCoin = new Coin();
-
-    private Boolean currentResult = true;
-
-    private Boolean previousResult = true;
-
-    private ImageView coinImage;
-
-    private CustomAnimationDrawable coinAnimationCustom;
-
-    private int flipCounter = 0;
-
-    private int headsCounter = 0;
-
-    private int tailsCounter = 0;
-    boolean flipResult;
 
     private void flipCoin() {
-        flipCounter++;
-         // we're in the process of flipping the coin
-        ResultState resultState = ResultState.UNKNOWN;
-
+        Random randomGenerator = new Random();
 
         // flip the coin and update the state with the result
-        flipResult = theCoin.flip();
+        flipResult = randomGenerator.nextBoolean();
         if (flipResult) {
             headsCounter++;
         } else {
             tailsCounter++;
         }
-        resultState = updateState(flipResult);
+        ResultState resultState = updateState(flipResult);
 
         // update the screen with the result of the flip
-        renderResult(resultState);
+        animateCoin(resultState);
 
     }
 
-    private void resetCoin() {
-        // hide the animation and draw the reset image
-        displayCoinAnimation(false);
-        displayCoinImage(true);
-        coinImage.setImageDrawable(getResources().getDrawable(R.drawable.head));
 
-        com.swissarmyutility.HeadTails.AnimationLib.Animation.clearAnimations();
-        coinImagesMap.clear();
-    }
-
-
-    private ResultState updateState(final boolean flipResult) {
+    private ResultState updateState(boolean flipResult) {
         // Analyze the current coin state and the new coin state and determine
         // the proper transition between the two.
-        // true = HEADS | false = TAILS
+
         ResultState resultState = ResultState.UNKNOWN;
         currentResult = flipResult;
 
@@ -174,50 +143,19 @@ public class HeadTailsFragment extends AppFragment {
         return resultState;
     }
 
-    // check the coin preference and determine how to load its resources
-    private void loadResources() {
-        loadInternalResources();
-
-    }
-
-    // load resources internal to the CoinFlip package
-    private void loadInternalResources() {
-       // load the images
-        final Drawable heads = getResources().getDrawable(R.drawable.head);
-        final Drawable tails = getResources().getDrawable(R.drawable.tail);
-        final Drawable edge = getResources().getDrawable(R.drawable.edge);
-        final Drawable background = getResources().getDrawable(R.drawable.background);
-
-            // render the animation for each result state and store it in the
-            // animations map
-        com.swissarmyutility.HeadTails.AnimationLib.Animation.generateAnimations(heads, tails, edge, background);
-
-
-        // add the appropriate image for each result state to the images map
-        // WTF? There's some kind of rendering bug if you use the "head" or
-        // "tail" variables here...
-        coinImagesMap.put(com.swissarmyutility.HeadTails.AnimationLib.Animation.ResultState.HEADS_HEADS, getResources().getDrawable(R.drawable.head));
-        coinImagesMap.put(com.swissarmyutility.HeadTails.AnimationLib.Animation.ResultState.HEADS_TAILS, getResources().getDrawable(R.drawable.tail));
-        coinImagesMap.put(com.swissarmyutility.HeadTails.AnimationLib.Animation.ResultState.TAILS_HEADS, getResources().getDrawable(R.drawable.head));
-        coinImagesMap.put(com.swissarmyutility.HeadTails.AnimationLib.Animation.ResultState.TAILS_TAILS, getResources().getDrawable(R.drawable.tail));
-    }
-
-    private void renderResult(final ResultState resultState) {
+    private void animateCoin(final ResultState resultState) {
         AnimationDrawable coinAnimation;
 
         // hide the static image and clear the text
         displayCoinImage(false);
         displayCoinAnimation(false);
 
-
-        // display the result
-
             // load the appropriate coin animation based on the state
-            coinAnimation = com.swissarmyutility.HeadTails.AnimationLib.Animation.getAnimation(resultState);
+            coinAnimation = CoinFlipAnimation.getAnimation(resultState);
             coinAnimationCustom = new CustomAnimationDrawable(coinAnimation) {
                 @Override
                 protected void onAnimationFinish() {
-                    onAnimationEnd();
+                    showTossResult();
                 }
             };
 
@@ -226,10 +164,20 @@ public class HeadTailsFragment extends AppFragment {
             displayCoinAnimation(true);
             coinImage.setBackgroundDrawable(coinAnimationCustom);
             coinAnimationCustom.start();
-            // handled by animation callback
-            // playCoinSound();
-            // updateResultText(resultState, resultText);
 
+    }
+
+    public void showTossResult(){
+        if(flipResult) {
+            headResultTextView.setText(String.valueOf(headsCounter));
+            headResultTextView.startAnimation(scaleAnimation);
+            coinDao.setFlipResult(true);
+        }else {
+            tailResultTextView.setText(String.valueOf(tailsCounter));
+            tailResultTextView.startAnimation(scaleAnimation);
+            coinDao.setFlipResult(false);
+        }
+        DatabaseManager.getInstance(getActivity()).addFlipResult(coinDao);
     }
 
     private void displayCoinAnimation(final boolean flag) {

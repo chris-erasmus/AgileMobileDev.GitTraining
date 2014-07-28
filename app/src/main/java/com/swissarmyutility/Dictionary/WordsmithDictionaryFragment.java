@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ import com.app.swissarmyutility.R;
 import com.swissarmyutility.Networking.WebServices;
 import com.swissarmyutility.Utility.ImageLoader;
 import com.swissarmyutility.Utility.NetworkConnection;
-import com.swissarmyutility.dataModel.DictionaryData;
+import com.swissarmyutility.dataModel.WordsmythDictionaryData;
 import com.swissarmyutility.dataModel.Part;
 import com.swissarmyutility.dataModel.Pronunciation;
 import com.swissarmyutility.dataModel.Sense;
@@ -38,58 +39,58 @@ import java.util.ArrayList;
  */
 public class WordsmithDictionaryFragment extends AppFragment {
     MediaPlayer mMediaPlayer;
-    InputMethodManager inputMethodManger ;
+    InputMethodManager mInputMethodManger;
 
-    Button mSearchButton;
-    EditText mSearchText;
-    TextView header;
-    RelativeLayout load_dictionary_data_layout;
-    LinearLayout dictionary_data_layout;
-    LinearLayout pronunciationsLayout;
-    LinearLayout partsLayout;
-    WebServices mSingletonWebServicesInstance;
-    DictionaryData mDictionaryData;
-    LayoutInflater inflator;
-    LinearLayout data_layout;
-    RelativeLayout dictioanry_word_meaning_layout;
-    TextView word_meaning_not_found_msg;
-    LinearLayout footer_layout;
-    Button mWordPronunciationSoundBtn;
-    ProgressBar mWordSoundStreamingProgressBar;
-    FetchDictionaryDataTask mFetchDictionaryDataTask;
-    ImageLoader mImageLoader;
+    private Button mSearchButton;
+    private EditText mSearchEditText;
+    private TextView mHeadertTextview;
+    private RelativeLayout mLoadDictionaryDataLayout;
+    private LinearLayout mDictionaryDataLayout;
+    private LinearLayout mPronunciationsLayout;
+    private LinearLayout mPartsLayout;
+    private WebServices mSingletonWebServicesInstance;
+    private WordsmythDictionaryData mDictionaryData;
+    private LayoutInflater mLayoutInflator;
+    private LinearLayout mDataLayout;
+    private RelativeLayout mDictioanryWordMeaningLayout;
+    private TextView mWordMeaningNotFoundMessageTextview;
+    private LinearLayout mFooterLayout;
+    private Button mWordPronunciationSoundBtn;
+    private ProgressBar mWordSoundStreamingProgressBar;
+    private FetchDictionaryDataTask mFetchDictionaryDataTask;
+    private ImageLoader mImageLoader;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_wordsmyth_dictionary,null);
         mImageLoader = new ImageLoader(getActivity());
-        inputMethodManger = (InputMethodManager)getActivity().getSystemService( Context.INPUT_METHOD_SERVICE);
-        inflator = getActivity().getLayoutInflater();
-        footer_layout =  (LinearLayout)view.findViewById(R.id.footer_layout);
-        word_meaning_not_found_msg = (TextView)view.findViewById(R.id.word_meaning_not_found_msg);
-        mSearchText  = (EditText)view.findViewById(R.id.search_edit_text);
-        mSearchText.addTextChangedListener(wathcher);
+        mInputMethodManger = (InputMethodManager)getActivity().getSystemService( Context.INPUT_METHOD_SERVICE);
+        mLayoutInflator = getActivity().getLayoutInflater();
+        mFooterLayout =  (LinearLayout)view.findViewById(R.id.footer_layout);
+        mWordMeaningNotFoundMessageTextview = (TextView)view.findViewById(R.id.word_meaning_not_found_msg);
+        mSearchEditText = (EditText)view.findViewById(R.id.search_edit_text);
+        mSearchEditText.addTextChangedListener(mDictionaryWordChangeWatcher);
         mSearchButton  = (Button)view.findViewById(R.id.search_btn);
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(!mSearchText.getText().toString().equalsIgnoreCase(""))
+                if(!mSearchEditText.getText().toString().equalsIgnoreCase(""))
                 {
                     if(NetworkConnection.isNetworkAvailable(getActivity())) {
-                        inputMethodManger.hideSoftInputFromWindow(mSearchText.getWindowToken(), 0);
+                        mInputMethodManger.hideSoftInputFromWindow(mSearchEditText.getWindowToken(), 0);
 
-                        if(pronunciationsLayout.getChildCount() > 0)
+                        if(mPronunciationsLayout.getChildCount() > 0)
                         {
-                            pronunciationsLayout.removeAllViews();
+                            mPronunciationsLayout.removeAllViews();
                         }
 
 
-                        if(partsLayout.getChildCount() > 0)
+                        if(mPartsLayout.getChildCount() > 0)
                         {
-                            partsLayout.removeAllViews();
+                            mPartsLayout.removeAllViews();
                         }
                         mFetchDictionaryDataTask = new FetchDictionaryDataTask();
-                        mFetchDictionaryDataTask.execute(mSearchText.getText().toString());
+                        mFetchDictionaryDataTask.execute(mSearchEditText.getText().toString());
                     }
                     else
                     {
@@ -105,28 +106,27 @@ public class WordsmithDictionaryFragment extends AppFragment {
             }
         });
 
-        dictioanry_word_meaning_layout = (RelativeLayout)view.findViewById(R.id.dictioanry_word_meaning_layout);
-        data_layout = (LinearLayout)view.findViewById(R.id.data_layout);
-        load_dictionary_data_layout = (RelativeLayout)view.findViewById(R.id.load_dictionary_data_layout);
-        dictionary_data_layout = (LinearLayout)view.findViewById(R.id.dictionary_data_layout);
-        header = (TextView)view.findViewById(R.id.header);
-        pronunciationsLayout = (LinearLayout)view.findViewById(R.id.pronunciations_layout);
-        partsLayout = (LinearLayout)view.findViewById(R.id.parts_layout);
+        mDictioanryWordMeaningLayout = (RelativeLayout)view.findViewById(R.id.dictioanry_word_meaning_layout);
+        mDataLayout = (LinearLayout)view.findViewById(R.id.data_layout);
+        mLoadDictionaryDataLayout = (RelativeLayout)view.findViewById(R.id.load_dictionary_data_layout);
+        mDictionaryDataLayout = (LinearLayout)view.findViewById(R.id.dictionary_data_layout);
+        mHeadertTextview = (TextView)view.findViewById(R.id.header);
+        mPronunciationsLayout = (LinearLayout)view.findViewById(R.id.pronunciations_layout);
+        mPartsLayout = (LinearLayout)view.findViewById(R.id.parts_layout);
         mSingletonWebServicesInstance = WebServices.getSingletonInstance();
 
         prepareMediaPlayer();
-
 
         return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        setTitle("Wordsmyth Dictionary");
+        setTitle(getString(R.string.wordsmyth_dictionary));
         super.onActivityCreated(savedInstanceState);
     }
 
-    TextWatcher wathcher = new TextWatcher() {
+   private TextWatcher mDictionaryWordChangeWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -140,11 +140,11 @@ public class WordsmithDictionaryFragment extends AppFragment {
             }
             mWordPronunciationSoundBtn = null;
             mWordSoundStreamingProgressBar = null;
-            dictionary_data_layout.setVisibility(View.GONE);
-            dictioanry_word_meaning_layout.setVisibility(View.GONE);
-            load_dictionary_data_layout.setVisibility(View.GONE);
-            word_meaning_not_found_msg.setVisibility(View.GONE);
-            footer_layout.setVisibility(View.GONE);
+            mDictionaryDataLayout.setVisibility(View.GONE);
+            mDictioanryWordMeaningLayout.setVisibility(View.GONE);
+            mLoadDictionaryDataLayout.setVisibility(View.GONE);
+            mWordMeaningNotFoundMessageTextview.setVisibility(View.GONE);
+            mFooterLayout.setVisibility(View.GONE);
         }
 
         @Override
@@ -154,28 +154,26 @@ public class WordsmithDictionaryFragment extends AppFragment {
         }
     };
 
-    class FetchDictionaryDataTask extends AsyncTask<String, Integer, DictionaryData>
+   private class FetchDictionaryDataTask extends AsyncTask<String, Integer, WordsmythDictionaryData>
     {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            word_meaning_not_found_msg.setVisibility(View.GONE);
-            footer_layout.setVisibility(View.GONE);
-            dictionary_data_layout.setVisibility(View.GONE);
-            dictioanry_word_meaning_layout.setVisibility(View.VISIBLE);
-            load_dictionary_data_layout.setVisibility(View.VISIBLE);
+            mWordMeaningNotFoundMessageTextview.setVisibility(View.GONE);
+            mFooterLayout.setVisibility(View.GONE);
+            mDictionaryDataLayout.setVisibility(View.GONE);
+            mDictioanryWordMeaningLayout.setVisibility(View.VISIBLE);
+            mLoadDictionaryDataLayout.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected DictionaryData doInBackground(String... params) {
+        protected WordsmythDictionaryData doInBackground(String... params) {
             return mSingletonWebServicesInstance.getDictionaryData(params[0]);
         }
 
         @Override
-        protected void onPostExecute(DictionaryData dictionaryData) {
+        protected void onPostExecute(WordsmythDictionaryData dictionaryData) {
             super.onPostExecute(dictionaryData);
-
-            int tag =100;
 
             mDictionaryData = dictionaryData;
 
@@ -183,20 +181,19 @@ public class WordsmithDictionaryFragment extends AppFragment {
             {
                 if(mDictionaryData.getHeadWord() != null)
                 {
-                    header.setText(mDictionaryData.getHeadWord());
+                    mHeadertTextview.setText(mDictionaryData.getHeadWord());
                 }
 
                 if(mDictionaryData.getPronunciationList() != null)
                 {
                     ArrayList<Pronunciation> pronunciations =  mDictionaryData.getPronunciationList();
                     for(int i=0;i<pronunciations.size();i++) {
-                        RelativeLayout pronunciationLayout = (RelativeLayout)inflator.inflate(R.layout.pronunciation_layout,null);
+                        RelativeLayout pronunciationLayout = (RelativeLayout) mLayoutInflator.inflate(R.layout.pronunciation_layout,null);
 
                         if(pronunciations.get(i).getStress() != null) {
                             ((TextView) pronunciationLayout.findViewById(R.id.pronunciation_text_view)).setText(pronunciations.get(i).getStress());
                             final Button wordPronunciationSoundBtn = ((Button) pronunciationLayout.findViewById(R.id.pronunciation_sound_btn));
                             final ProgressBar wordSoundStreamingProgressBar = ((ProgressBar) pronunciationLayout.findViewById(R.id.streaming_sound_progressbar));
-                            wordPronunciationSoundBtn.setTag(tag++);
                             wordPronunciationSoundBtn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -212,7 +209,7 @@ public class WordsmithDictionaryFragment extends AppFragment {
 
 
                             });
-                            pronunciationsLayout.addView(pronunciationLayout);
+                            mPronunciationsLayout.addView(pronunciationLayout);
                         }
 
                     }
@@ -221,18 +218,12 @@ public class WordsmithDictionaryFragment extends AppFragment {
 
                 if(mDictionaryData.getPartList() != null)
                 {
-
                     ArrayList<Part> partList =  mDictionaryData.getPartList();
-
                     for(int i=0;i<partList.size();i++) {
 
-
-                        LinearLayout partLayout = (LinearLayout)inflator.inflate(R.layout.part_layout,null);
+                        LinearLayout partLayout = (LinearLayout) mLayoutInflator.inflate(R.layout.part_layout,null);
                         LinearLayout nameLayout = (LinearLayout)partLayout.findViewById(R.id.part_titles_layout);
                         LinearLayout sensesLayout = (LinearLayout)partLayout.findViewById(R.id.senses_layout);
-/*                        TextView definition = (TextView)partLayout.findViewById(R.id.definition_text_view);
-                        TextView synonyms = (TextView)partLayout.findViewById(R.id.synonym_texts_text_view);
-                        TextView spanish_translation_text_view = (TextView)partLayout.findViewById(R.id.spanish_translation_text_view);*/
 
                         Part part = partList.get(i);
                         ArrayList<String> nameList = part.getNameList();
@@ -242,7 +233,7 @@ public class WordsmithDictionaryFragment extends AppFragment {
                         {
                             for(int j=0;j<nameList.size();j++) {
 
-                                TextView name = (TextView)inflator.inflate(R.layout.part_title_layout,null);
+                                TextView name = (TextView) mLayoutInflator.inflate(R.layout.part_title_layout,null);
                                 name.setText(nameList.get(j));
                                 nameLayout.addView(name);
                             }
@@ -254,9 +245,8 @@ public class WordsmithDictionaryFragment extends AppFragment {
                         {
                             for(int j=0;j<senseList.size();j++) {
 
-                                LinearLayout senseLayout = (LinearLayout)inflator.inflate(R.layout.sense_layout,null);
+                                LinearLayout senseLayout = (LinearLayout) mLayoutInflator.inflate(R.layout.sense_layout,null);
                                 TextView definitionNoTextView = (TextView)senseLayout.findViewById(R.id.definition_no_text_view);
-
                                 TextView definition = (TextView)senseLayout.findViewById(R.id.definition_text_view);
                                 TextView synonyms = (TextView)senseLayout.findViewById(R.id.synonym_texts_text_view);
                                 TextView spanish_translation_text_view = (TextView)senseLayout.findViewById(R.id.spanish_translation_text_view);
@@ -320,7 +310,7 @@ public class WordsmithDictionaryFragment extends AppFragment {
 
                                         String imageName = imageList.get(i);
                                         if(!imageName.endsWith(".gif")) {
-                                            RelativeLayout wordImageLayout = (RelativeLayout) inflator.inflate(R.layout.word_image_layout, null);
+                                            RelativeLayout wordImageLayout = (RelativeLayout) mLayoutInflator.inflate(R.layout.word_image_layout, null);
                                             ImageView wordImage = (ImageView) wordImageLayout.findViewById(R.id.word_image_view);
                                             mImageLoader.displayImage(wordImage, WebServices.IMAGE_URL + imageName);
                                             wordExampleImageListLayout.addView(wordImageLayout);
@@ -338,28 +328,26 @@ public class WordsmithDictionaryFragment extends AppFragment {
 
                         }
 
-                        partsLayout.addView(partLayout);
+                        mPartsLayout.addView(partLayout);
                     }
 
                 }
 
-                load_dictionary_data_layout.setVisibility(View.GONE);
-                dictionary_data_layout.setVisibility(View.VISIBLE);
-                footer_layout.setVisibility(View.VISIBLE);
+                mLoadDictionaryDataLayout.setVisibility(View.GONE);
+                mDictionaryDataLayout.setVisibility(View.VISIBLE);
+                mFooterLayout.setVisibility(View.VISIBLE);
             }
             else
             {
-                load_dictionary_data_layout.setVisibility(View.GONE);
-                word_meaning_not_found_msg.setVisibility(View.VISIBLE);
-                //Toast.makeText(getActivity(), getString(R.string.not_found_word_meaning), Toast.LENGTH_SHORT).show();
+                mLoadDictionaryDataLayout.setVisibility(View.GONE);
+                mWordMeaningNotFoundMessageTextview.setVisibility(View.VISIBLE);
             }
-
         }
     }
 
 
 
-    void prepareMediaPlayer()
+    private  void prepareMediaPlayer()
     {
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
@@ -407,7 +395,7 @@ public class WordsmithDictionaryFragment extends AppFragment {
         });
     }
 
-    void playPronunciationSound() {
+    private void playPronunciationSound() {
         try
         {
 
@@ -427,7 +415,7 @@ public class WordsmithDictionaryFragment extends AppFragment {
         }
     }
 
-    void releaseMediaPlayer()
+  private void releaseMediaPlayer()
     {
         try
         {
@@ -438,8 +426,25 @@ public class WordsmithDictionaryFragment extends AppFragment {
             }
         }
         catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
-    
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Setup back button key listener to release MediaPlayer
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    releaseMediaPlayer();
+                }
+                return false;
+            }
+        });
+    }
 }

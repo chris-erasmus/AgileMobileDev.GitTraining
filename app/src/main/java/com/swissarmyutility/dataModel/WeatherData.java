@@ -1,9 +1,9 @@
-package com.swissarmyutility.weatherModel;
+package com.swissarmyutility.dataModel;
 
 
-public class Weather {
+public class WeatherData {
 	
-	public Location location;
+	public WeatherLocation location;
 	public CurrentCondition currentCondition = new CurrentCondition();
 	public Temperature temperature = new Temperature();
 	public Wind wind = new Wind();

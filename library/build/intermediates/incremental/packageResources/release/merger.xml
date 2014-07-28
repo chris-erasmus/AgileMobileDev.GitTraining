@@ -2,6 +2,7 @@
 <merger version="2" >
 
     <dataSet config="main" >
+<<<<<<< HEAD
         <source path="D:\Digvesh\SwissArmyKnifeUtility\AgileMobileDev.GitTraining\library\res" >
             <file
                 name="slidingmenumain"
@@ -10,6 +11,16 @@
                 type="layout" />
             <file
                 path="D:\Digvesh\SwissArmyKnifeUtility\AgileMobileDev.GitTraining\library\res\values\attrs.xml"
+=======
+        <source path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\res" >
+            <file
+                name="slidingmenumain"
+                path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\res\layout\slidingmenumain.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\res\values\attrs.xml"
+>>>>>>> 572a05cac0f8c23f52eca2cf0afbcc3605e0e894
                 qualifiers="" >
                 <declare-styleable name="SlidingMenu" >
                     <attr name="mode" >
@@ -78,18 +89,30 @@
                 </declare-styleable>
             </file>
             <file
+<<<<<<< HEAD
                 path="D:\Digvesh\SwissArmyKnifeUtility\AgileMobileDev.GitTraining\library\res\values\ids.xml"
+=======
+                path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\res\values\ids.xml"
+>>>>>>> 572a05cac0f8c23f52eca2cf0afbcc3605e0e894
                 qualifiers="" >
                 <item
                     name="selected_view"
                     type="id"/>
             </file>
         </source>
+<<<<<<< HEAD
         <source path="D:\Digvesh\SwissArmyKnifeUtility\AgileMobileDev.GitTraining\library\build\generated\res\rs\release" />
         <source path="D:\Digvesh\SwissArmyKnifeUtility\AgileMobileDev.GitTraining\library\build\generated\res\generated\release" />
     </dataSet>
     <dataSet config="release" >
         <source path="D:\Digvesh\SwissArmyKnifeUtility\AgileMobileDev.GitTraining\library\src\release\res" />
+=======
+        <source path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\build\generated\res\rs\release" />
+        <source path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\build\generated\res\generated\release" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\src\release\res" />
+>>>>>>> 572a05cac0f8c23f52eca2cf0afbcc3605e0e894
     </dataSet>
 
 </merger>

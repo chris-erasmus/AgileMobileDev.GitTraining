@@ -2,10 +2,17 @@
 <merger version="2" >
 
     <dataSet config="main" >
+<<<<<<< HEAD
         <source path="D:\Digvesh\SwissArmyKnifeUtility\AgileMobileDev.GitTraining\library\assets" />
     </dataSet>
     <dataSet config="release" >
         <source path="D:\Digvesh\SwissArmyKnifeUtility\AgileMobileDev.GitTraining\library\src\release\assets" />
+=======
+        <source path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\assets" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="C:\Users\piyush.sharma\AndroidStudioProjects\MasterUtility\library\src\release\assets" />
+>>>>>>> 572a05cac0f8c23f52eca2cf0afbcc3605e0e894
     </dataSet>
 
 </merger>

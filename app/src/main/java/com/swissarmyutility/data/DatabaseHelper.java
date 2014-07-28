@@ -9,7 +9,7 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.swissarmyutility.dataModel.HeadTailModel;
+import com.swissarmyutility.HeadTails.CoinDao;
 import com.swissarmyutility.dataModel.WeightTrackModel;
 
 
@@ -25,7 +25,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	// the DAO object we use to access the SimpleData table
 
-    private Dao<HeadTailModel, Integer> headTail = null;
+    private Dao<CoinDao, Integer> headTail = null;
     private Dao<WeightTrackModel, Integer> weightTrackModel = null;
 
 	public DatabaseHelper(Context context) {
@@ -35,7 +35,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase database,ConnectionSource connectionSource) {
 		try {
-			TableUtils.createTable(connectionSource, HeadTailModel.class);
+			TableUtils.createTable(connectionSource, CoinDao.class);
             TableUtils.createTable(connectionSource, WeightTrackModel.class);
 
 		} catch (SQLException e) {
@@ -67,10 +67,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		
 	}
 
-	public Dao<HeadTailModel, Integer> HeadTailListDao() {
+	public Dao<CoinDao, Integer> getCoinDao() {
 		if (null == headTail) {
 			try {
-                headTail = getDao(HeadTailModel.class);
+                headTail = getDao(CoinDao.class);
 			}catch (java.sql.SQLException e) {
 				e.printStackTrace();
 			}

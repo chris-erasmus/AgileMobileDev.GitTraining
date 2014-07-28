@@ -26,10 +26,11 @@ import java.util.concurrent.Executors;
  */
 public class ImageLoader
 {
-    Context mContext;
-    ExecutorService mExecutorService;
-    Map<String,Bitmap> mUrlBitmapRTagMap = Collections.synchronizedMap(new WeakHashMap<String, Bitmap>());
-    Map<ImageView,String> mImageViewUrlTagMap = Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
+    private Context mContext;
+    private ExecutorService mExecutorService;
+    private Map<String,Bitmap> mUrlBitmapRTagMap = Collections.synchronizedMap(new WeakHashMap<String, Bitmap>());
+    private Map<ImageView,String> mImageViewUrlTagMap = Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
+
     public ImageLoader(Context context)
     {
         mContext = context;
@@ -51,13 +52,13 @@ public class ImageLoader
          }
      }
 
-    void putImageURLInFetchingBitmapQueue(String imageURL,ImageView imageView)
+    private void putImageURLInFetchingBitmapQueue(String imageURL,ImageView imageView)
     {
          BitmapToLoad bmpToLoad = new BitmapToLoad(imageURL,imageView);
          mExecutorService.submit(new BitmapLoaderTask(bmpToLoad));
     }
 
-     class BitmapToLoad
+    private class BitmapToLoad
      {
          String mImageURL;
          ImageView mImageView;
@@ -68,7 +69,7 @@ public class ImageLoader
          }
      }
 
-    class BitmapLoaderTask implements Runnable
+    private class BitmapLoaderTask implements Runnable
     {
         BitmapToLoad mBitmapToLoad;
         BitmapLoaderTask(BitmapToLoad bitmapToLoad)
@@ -77,17 +78,17 @@ public class ImageLoader
         }
         @Override
         public void run() {
-          if(isImageviewReused(mBitmapToLoad))
+          if(isImageViewReused(mBitmapToLoad))
               return;
             Bitmap bmp = fetchBitmap(mBitmapToLoad.mImageURL);
             mUrlBitmapRTagMap.put(mBitmapToLoad.mImageURL,bmp);
-            if(isImageviewReused(mBitmapToLoad))
+            if(isImageViewReused(mBitmapToLoad))
                 return;
            ((Activity)mContext).runOnUiThread(new BitmapDisplayer(bmp,mBitmapToLoad));
         }
     }
 
-    boolean isImageviewReused(BitmapToLoad bitmapToLoad)
+    private boolean isImageViewReused(BitmapToLoad bitmapToLoad)
     {
          String tagURL  = mImageViewUrlTagMap.get(bitmapToLoad.mImageView);
         if(tagURL == null || !tagURL.equals(bitmapToLoad.mImageURL))
@@ -95,7 +96,7 @@ public class ImageLoader
         return false;
     }
 
-    Bitmap fetchBitmap(String imageURL)
+    private Bitmap fetchBitmap(String imageURL)
     {
         Bitmap bmp = null;
         try {
@@ -126,10 +127,10 @@ public class ImageLoader
         return bmp;
     }
 
-    class BitmapDisplayer implements Runnable
+    private class BitmapDisplayer implements Runnable
     {
-        Bitmap mBitmap;
-        BitmapToLoad mBitmapToLoad;
+        private Bitmap mBitmap;
+        private BitmapToLoad mBitmapToLoad;
         BitmapDisplayer(Bitmap bmp,BitmapToLoad bitmapToLoad)
         {
             mBitmap = bmp;
@@ -138,7 +139,7 @@ public class ImageLoader
         }
         @Override
         public void run() {
-           if(isImageviewReused(mBitmapToLoad))
+           if(isImageViewReused(mBitmapToLoad))
                return;
             if(mBitmap == null)
                 mBitmapToLoad.mImageView.setImageDrawable(mContext.getResources().getDrawable(R.drawable.placeholder));
@@ -146,7 +147,8 @@ public class ImageLoader
                 mBitmapToLoad.mImageView.setImageBitmap(mBitmap);
         }
     }
-void clearCache()
+
+public void clearCache()
 {
     if(mUrlBitmapRTagMap != null)
             mUrlBitmapRTagMap.clear();
