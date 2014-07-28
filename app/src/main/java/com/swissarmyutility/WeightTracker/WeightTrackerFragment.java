@@ -1,10 +1,8 @@
 package com.swissarmyutility.WeightTracker;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +56,7 @@ public class WeightTrackerFragment extends AppFragment {
 
         sdfTime = new SimpleDateFormat("dd-MM-yyyy HH-mm");
         llUserGraph = (LinearLayout) view.findViewById(R.id.chart_container1);
-        DatabaseManager.init(getActivity());
+
         AddingAdapter();
     btnTrade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +67,7 @@ public class WeightTrackerFragment extends AppFragment {
                     weightTrackModel = new WeightTrackModel();
                     weightTrackModel.setTime(time);
                     weightTrackModel.setWeight(etWeight.getText().toString());
-                    DatabaseManager.getInstance().addWeightTrackList(weightTrackModel);
+                    DatabaseManager.getInstance(getActivity()).addWeightTrackList(weightTrackModel);
                     allWishLists.clear();
                     for(WeightTrackModel wishListItem: allWishLists)
                     {
@@ -86,6 +84,7 @@ public class WeightTrackerFragment extends AppFragment {
         });
         return view;
     }
+    
 
     /**
      *  Entering data into listview
@@ -93,7 +92,7 @@ public class WeightTrackerFragment extends AppFragment {
     private void AddingAdapter(){
         llUserGraph.removeAllViews();
 
-        allWishLists = DatabaseManager.getInstance().getAllWeightTrackerLists();
+        allWishLists = DatabaseManager.getInstance(getActivity()).getAllWeightTrackerLists();
         weightTrackerAdapter = new WeightTrackerAdapter(getActivity(),allWishLists);
         list.setAdapter(weightTrackerAdapter);
 
