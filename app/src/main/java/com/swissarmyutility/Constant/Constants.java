@@ -53,6 +53,6 @@ public class Constants {
     public static  String SIMILAR_WORDS = "similarwords";
     public static  String TITLE = "title";
     public static  String WE_WORD = "weword";
-    public static  String WE_WORDS = "wewords"
+    public static  String WE_WORDS = "wewords";
 
 }
