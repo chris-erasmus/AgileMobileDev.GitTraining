@@ -4,8 +4,8 @@ package com.swissarmyutility.dataModel;
  * Created by piyush.sharma on 7/16/2014.
  */
 public class Pronunciation {
-    String stress;
-    String sound;
+    private String stress;
+    private String sound;
 
     public String getStress() {
         return stress;

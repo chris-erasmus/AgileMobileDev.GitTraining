@@ -6,13 +6,13 @@ import java.util.ArrayList;
  * Created by piyush.sharma on 7/16/2014.
  */
 public class Sense {
-    String definition;
-    ArrayList<String> spanishTranslationList;
-    ArrayList<String> spanishExampleList;
-    ArrayList<String> exampleList;
-    ArrayList<String> imageList;
-    ArrayList<String> synonymList;
-    ArrayList<String> similarWordList;
+    private String definition;
+    private ArrayList<String> spanishTranslationList;
+    private ArrayList<String> spanishExampleList;
+    private ArrayList<String> exampleList;
+    private ArrayList<String> imageList;
+    private ArrayList<String> synonymList;
+    private ArrayList<String> similarWordList;
 
     public String getDefinition() {
         return definition;

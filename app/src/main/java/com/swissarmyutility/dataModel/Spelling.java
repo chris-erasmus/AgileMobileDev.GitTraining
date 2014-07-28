@@ -5,8 +5,8 @@ package com.swissarmyutility.dataModel;
  */
 public class Spelling
 {
-    String spell;
-    String syllable;
+    private String spell;
+    private String syllable;
 
     public String getSpell() {
         return spell;

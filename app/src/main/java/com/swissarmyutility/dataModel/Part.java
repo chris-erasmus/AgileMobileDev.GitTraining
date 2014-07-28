@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class Part {
 
-    ArrayList<String> nameList;
-    ArrayList<String> relatedWordList;
-    ArrayList<Sense> senseList;
+    private ArrayList<String> nameList;
+    private ArrayList<String> relatedWordList;
+    private ArrayList<Sense> senseList;
 
     public ArrayList<String> getNameList() {
         return nameList;

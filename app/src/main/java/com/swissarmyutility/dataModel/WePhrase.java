@@ -7,8 +7,8 @@ import java.util.ArrayList;
  */
 public class WePhrase
 {
-    String title;
-    ArrayList<String> weWordList;
+    private String title;
+    private ArrayList<String> weWordList;
 
     public String getTitle() {
         return title;
