@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 17
+    compileSdkVersion 'android-L'
     buildToolsVersion '20.0.0'
     defaultConfig {
         applicationId 'com.app.swissarmyutility'
-        minSdkVersion 8
-
+        minSdkVersion 'L'
+        targetSdkVersion 'L'
         versionCode 1
         versionName '1.0'
     }
