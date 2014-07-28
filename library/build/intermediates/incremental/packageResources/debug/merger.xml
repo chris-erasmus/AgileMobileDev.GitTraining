@@ -2,14 +2,14 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="C:\Development\UtilityApp\library\res" >
+        <source path="D:\Vinod\Clone projects\AgileMobileDev.GitTraining\library\res" >
             <file
                 name="slidingmenumain"
-                path="C:\Development\UtilityApp\library\res\layout\slidingmenumain.xml"
+                path="D:\Vinod\Clone projects\AgileMobileDev.GitTraining\library\res\layout\slidingmenumain.xml"
                 qualifiers=""
                 type="layout" />
             <file
-                path="C:\Development\UtilityApp\library\res\values\attrs.xml"
+                path="D:\Vinod\Clone projects\AgileMobileDev.GitTraining\library\res\values\attrs.xml"
                 qualifiers="" >
                 <declare-styleable name="SlidingMenu" >
                     <attr name="mode" >
@@ -78,18 +78,18 @@
                 </declare-styleable>
             </file>
             <file
-                path="C:\Development\UtilityApp\library\res\values\ids.xml"
+                path="D:\Vinod\Clone projects\AgileMobileDev.GitTraining\library\res\values\ids.xml"
                 qualifiers="" >
                 <item
                     name="selected_view"
                     type="id"/>
             </file>
         </source>
-        <source path="C:\Development\UtilityApp\library\build\generated\res\rs\debug" />
-        <source path="C:\Development\UtilityApp\library\build\generated\res\generated\debug" />
+        <source path="D:\Vinod\Clone projects\AgileMobileDev.GitTraining\library\build\generated\res\rs\debug" />
+        <source path="D:\Vinod\Clone projects\AgileMobileDev.GitTraining\library\build\generated\res\generated\debug" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="C:\Development\UtilityApp\library\src\debug\res" />
+        <source path="D:\Vinod\Clone projects\AgileMobileDev.GitTraining\library\src\debug\res" />
     </dataSet>
 
 </merger>

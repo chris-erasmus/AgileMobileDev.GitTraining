@@ -2,10 +2,10 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="C:\Development\UtilityApp\library\assets" />
+        <source path="D:\Vinod\Clone projects\AgileMobileDev.GitTraining\library\assets" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="C:\Development\UtilityApp\library\src\debug\assets" />
+        <source path="D:\Vinod\Clone projects\AgileMobileDev.GitTraining\library\src\debug\assets" />
     </dataSet>
 
 </merger>
