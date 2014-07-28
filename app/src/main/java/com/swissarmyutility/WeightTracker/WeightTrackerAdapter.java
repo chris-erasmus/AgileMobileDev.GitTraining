@@ -7,17 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import com.app.swissarmyutility.R;
 import com.swissarmyutility.dataModel.WeightTrackModel;
-
 import java.util.List;
 
 
 public class WeightTrackerAdapter extends BaseAdapter {
 
     private Context mContext;
-    List<WeightTrackModel> allWishLists;
+    private List<WeightTrackModel> allWishLists;
 
     public WeightTrackerAdapter(Context c,  List<WeightTrackModel> allWishLists) {
         mContext = c;
