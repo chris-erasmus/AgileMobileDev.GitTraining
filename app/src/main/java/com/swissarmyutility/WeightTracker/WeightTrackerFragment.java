@@ -1,5 +1,6 @@
 package com.swissarmyutility.WeightTracker;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -38,23 +39,25 @@ import java.util.List;
  * Created by Naresh.Kaushik on 16-07-2014.
  */
 public class WeightTrackerFragment extends AppFragment {
+
     private EditText etWeight;
     private Button btnTrade;
     private ListView list;
     private WeightTrackerAdapter weightTrackerAdapter;
     private SimpleDateFormat sdfTime;
-    List<WeightTrackModel> allWishLists;
-    private LinearLayout user_graph;
+    private List<WeightTrackModel> allWishLists;
+    private LinearLayout llUserGraph;
     private WeightTrackModel weightTrackModel;
+
      @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //return the view here
         View view = inflater.inflate(R.layout.weight_tracker, null);
         etWeight = (EditText) view.findViewById(R.id.weight_tracker_et_weight);
         btnTrade = (Button) view.findViewById(R.id.weight_tracker_btn_trade);
         list = (ListView) view.findViewById(R.id.weight_tracker_list_view);
+
         sdfTime = new SimpleDateFormat("dd-MM-yyyy HH-mm");
-        user_graph = (LinearLayout) view.findViewById(R.id.chart_container1);
+        llUserGraph = (LinearLayout) view.findViewById(R.id.chart_container1);
         DatabaseManager.init(getActivity());
         AddingAdapter();
     btnTrade.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +65,7 @@ public class WeightTrackerFragment extends AppFragment {
             public void onClick(View view) {
                 if(!etWeight.getText().toString().equals("")){
                     String time = sdfTime.format(Calendar.getInstance().getTime());
+
                     weightTrackModel = new WeightTrackModel();
                     weightTrackModel.setTime(time);
                     weightTrackModel.setWeight(etWeight.getText().toString());
@@ -87,7 +91,7 @@ public class WeightTrackerFragment extends AppFragment {
      *  Entering data into listview
      */
     private void AddingAdapter(){
-        user_graph.removeAllViews();
+        llUserGraph.removeAllViews();
 
         allWishLists = DatabaseManager.getInstance().getAllWeightTrackerLists();
         weightTrackerAdapter = new WeightTrackerAdapter(getActivity(),allWishLists);
@@ -95,14 +99,13 @@ public class WeightTrackerFragment extends AppFragment {
 
         etWeight.setText("");
 
-        Opengraph_activity(allWishLists,user_graph);
+        Opengraph_activity(allWishLists,llUserGraph);
 
         getActivity().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
     }
 
-    @Override
+
     public void onActivityCreated(Bundle savedInstanceState) {
         setTitle("Weight Tracker");
         super.onActivityCreated(savedInstanceState);
@@ -111,9 +114,9 @@ public class WeightTrackerFragment extends AppFragment {
     /**
      * Contaning Chart functionality
      * @param valuesList
-     * @param user_graph
+     * @param llUserGraph
      */
-    public void Opengraph_activity( List<WeightTrackModel> valuesList,LinearLayout user_graph) {
+    public void Opengraph_activity( List<WeightTrackModel> valuesList,LinearLayout llUserGraph) {
 
         double[] valueArray1 = new double[valuesList.size()];
         double[] valueArray_time = new double[valuesList.size()];
@@ -141,8 +144,7 @@ public class WeightTrackerFragment extends AppFragment {
             r.setLineWidth(7);
             r.setFillPoints(true);
         }
-        setChartSettings(renderer, "Weight Tracking", "Number", "Weight", 0.5,
-                valuesList.size(),0,valuesList.size(), Color.LTGRAY, Color.LTGRAY);
+        setChartSettings(renderer, "Weight Tracking", "Number", "Weight", Color.LTGRAY, Color.LTGRAY);
 
         renderer.setXLabels(12);
         renderer.setYLabels(10);
@@ -157,12 +159,15 @@ public class WeightTrackerFragment extends AppFragment {
         renderer.setClickEnabled(false);
         renderer.setLabelsColor(Color.BLACK);
         renderer.setMarginsColor(Color.argb(0, 250, 250, 250));
-        renderer.setBarSpacing(0.5);
+        renderer.setBarSpacing(1);
+
         XYMultipleSeriesDataset dataset = buildDataset(titles, x, values);
         String[] types = new String[] {  CubicLineChart.TYPE };
         final GraphicalView grfv = ChartFactory.getCombinedXYChartView(
                 getActivity(), dataset, renderer, types);
-        user_graph.addView(grfv);
+
+        llUserGraph.addView(grfv);
+
     }
     // Set only the names of the lines
     protected XYMultipleSeriesDataset buildDataset(String[] titles,
@@ -222,19 +227,20 @@ public class WeightTrackerFragment extends AppFragment {
         }
     }
     protected void setChartSettings(XYMultipleSeriesRenderer renderer,
-                                    String title, String xTitle, String yTitle, double xMin,
-                                    double xMax, double yMin, double yMax, int axesColor,
+                                    String title, String xTitle, String yTitle, int axesColor,
                                     int labelsColor) {
         renderer.setChartTitle(title);
         renderer.setXTitle(xTitle);
         renderer.setYTitle(yTitle);
-        for (int i=0;i<xMax;i++){
-            renderer.addYTextLabel(i, "10%");
-        }
-        for (int i=0;i<yMax;i++){
-            renderer.addYTextLabel(i, "20%");
-        }
-        renderer.setAxesColor(axesColor);
+
+
+//        for (int i=0;i<xMax;i++){
+//            renderer.addYTextLabel(i, "10%");
+//        }
+//        for (int i=0;i<yMax;i++){
+//            renderer.addYTextLabel(i, "20%");
+//        }
+         renderer.setAxesColor(axesColor);
         renderer.setLabelsColor(labelsColor);
     }
 }

@@ -15,18 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.app.swissarmyutility.R;
 import com.swissarmyutility.Calculator.CalculatorFragment;
 import com.swissarmyutility.Dictionary.WordsmithDictionaryFragment;
-import com.swissarmyutility.Expenditure.ExpenditureFragment;
 import com.swissarmyutility.HeadTails.HeadTailsFragment;
-import com.swissarmyutility.MetricConvertor.MetricConvertorFragment;
-import com.swissarmyutility.ReminderSetter.RemiderSetterFragment;
-import com.swissarmyutility.ShoppingList.ShoppingListFragment;
+import com.swissarmyutility.ReminderSetter.ReminderSetterFragment;
 import com.swissarmyutility.StopWatch.StopWatchFragment;
 import com.swissarmyutility.TimeZone.TimeZoneFragment;
 import com.swissarmyutility.WeatherAPIcall.WeatherFragment;
 import com.swissarmyutility.WeightTracker.WeightTrackerFragment;
-import com.app.swissarmyutility.R;
 
 import java.util.ArrayList;
 
@@ -71,7 +68,7 @@ public class SlidingMenuFragment extends Fragment {
 
         appFragments.add(new TimeZoneFragment());
         appFragments.add(new HeadTailsFragment());
-        appFragments.add(new RemiderSetterFragment());
+        appFragments.add(new ReminderSetterFragment());
         appFragments.add(new WeatherFragment());
         appFragments.add(new WeightTrackerFragment());
         appFragments.add(new WordsmithDictionaryFragment());

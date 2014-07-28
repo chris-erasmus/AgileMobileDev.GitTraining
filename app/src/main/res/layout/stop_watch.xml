@@ -2,14 +2,13 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_fragment_light_gray">
+    android:layout_height="match_parent">
+
+
 
     <include android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/header"/>
-
-
 
         <Chronometer android:id="@+id/chronometer"
             android:format="@string/chronometer_initial_format"
@@ -17,12 +16,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:paddingBottom="@dimen/padding_30"
+            android:layout_gravity="center"
             android:textSize="@dimen/text_size_timer"
             android:textStyle="bold"
-            android:textColor="@android:color/holo_blue_dark"
-            android:layout_gravity="center"
-            android:paddingTop="@dimen/padding_30"
-            />
+            android:textColor="@color/green"></Chronometer>
+
 
         <LinearLayout
             android:id="@+id/linear_btnlayout"
@@ -34,10 +32,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/start_btn"
                 android:textSize="@dimen/text_size_btn"
-                android:layout_margin="@dimen/margin_2"
-                android:textColor="@android:color/holo_blue_dark"
                 android:layout_weight=".25"
-                android:background="@drawable/custom_button_shape">
+                android:layout_margin="@dimen/margin_2"
+                android:background="@drawable/custom_button_shape"
+                android:textColor="@color/off_white">
                 <requestFocus />
             </Button>
 
@@ -46,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/stop_btn"
                 android:textSize="@dimen/text_size_btn"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/off_white"
                 android:layout_weight=".25"
                 android:layout_margin="@dimen/margin_2"
                 android:background="@drawable/custom_button_shape">
@@ -57,21 +55,23 @@
                 android:layout_height="wrap_content"
                 android:text="@string/reset_btn"
                 android:textSize="@dimen/text_size_btn"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/off_white"
                 android:layout_weight=".25"
                 android:layout_margin="@dimen/margin_2"
                 android:background="@drawable/custom_button_shape">
+
             </Button>
 
             <Button android:id="@+id/btn_lap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lap_btn"
-                android:textSize="@dimen/text_size_btn"
-                android:textColor="@android:color/holo_blue_dark"
                 android:layout_weight=".25"
+                android:textSize="@dimen/text_size_btn"
                 android:layout_margin="@dimen/margin_2"
+                android:textColor="@color/off_white"
                 android:background="@drawable/custom_button_shape">
+
             </Button>
 
         </LinearLayout>
