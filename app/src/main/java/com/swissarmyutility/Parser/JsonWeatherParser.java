@@ -1,25 +1,24 @@
-package com.swissarmyutility.WeatherAPIcall;
+package com.swissarmyutility.Parser;
 
+import com.swissarmyutility.dataModel.WeatherData;
+import com.swissarmyutility.dataModel.WeatherLocation;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.swissarmyutility.weatherModel.Location;
-import com.swissarmyutility.weatherModel.Weather;
 
 /**
  * Created by Vinod.sakala on 7/23/2014.
  */
 public class JsonWeatherParser {
 
-    public static Weather getWeather(String data) throws JSONException {
-        Weather weather = new Weather();
+    public static WeatherData getWeather(String data) throws JSONException {
+        WeatherData weather = new WeatherData();
 
         // We create out JSONObject from the data
         JSONObject jObj = new JSONObject(data);
 
         // We start extracting the info
-        Location loc = new Location();
+        WeatherLocation loc = new WeatherLocation();
 
         JSONObject coordObj = getObject("coord", jObj);
         loc.setLatitude(getFloat("lat", coordObj));
