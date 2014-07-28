@@ -10,29 +10,35 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ListView;
 
-import com.swissarmyutility.globalnavigation.AppFragment;
 import com.app.swissarmyutility.R;
+import com.swissarmyutility.globalnavigation.AppFragment;
 
 import java.util.ArrayList;
 
 
 /**
  * Created by Naresh.Kaushik on 16-07-2014.
+ * Modifined by Navneet Srivastava on 23-07-2014.
  *
  */
+
 public class StopWatchFragment extends AppFragment {
 
     Chronometer mChronometer;
     private long timeWhenStopped = 0;
     private Button btnStart, btnStop, btnReset, btnLap;
-    String time="";
     ListView timer_list;
     CustomAdapter arrayAdpter;
     protected ArrayList<String> timeList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         //return the view here
         View view =  inflater.inflate(R.layout.stop_watch,null);
+
+        Typeface digitalFont = Typeface.createFromAsset(getActivity().getAssets(),"digitaL.ttf");
+        mChronometer = (Chronometer) view.findViewById(R.id.chronometer);
+        mChronometer.setTypeface(digitalFont);
 
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),"digitaL.ttf");
 
@@ -45,6 +51,8 @@ public class StopWatchFragment extends AppFragment {
         btnLap = (Button) view.findViewById(R.id.btn_lap);
         timer_list=(ListView) view.findViewById(R.id.list);
         timeList=new ArrayList<String>();
+
+
         arrayAdpter=new CustomAdapter(getActivity(),timeList);
         timer_list.setAdapter(arrayAdpter);
 
@@ -68,6 +76,8 @@ public class StopWatchFragment extends AppFragment {
                 mChronometer.start();
             }
             btnStart.setText("RESTART");
+            btnLap.setEnabled(true);
+
         }
     };
 
@@ -75,6 +85,9 @@ public class StopWatchFragment extends AppFragment {
         public void onClick(View v) {
 
             timeWhenStopped = mChronometer.getBase() - SystemClock.elapsedRealtime();
+            System.out.println("");
+            mChronometer.stop();
+            btnLap.setEnabled(false);
             mChronometer.stop();
         }
     };
@@ -86,24 +99,17 @@ public class StopWatchFragment extends AppFragment {
             timeList.clear();
             arrayAdpter.notifyDataSetChanged();
             btnStart.setText("START");
+            btnLap.setEnabled(false);
+
         }
     };
 
     View.OnClickListener mLapListener = new View.OnClickListener() {
         public void onClick(View v) {
-            timeList.add(showElapsedTime());
+            timeList.add(SetElapsedTimeForLapping.showElapsedTime(SystemClock.elapsedRealtime() - mChronometer.getBase()));
             arrayAdpter.notifyDataSetChanged();
         }
     };
-
-    public String showElapsedTime(){
-        long elapsedMillis = SystemClock.elapsedRealtime() - mChronometer.getBase();
-        long totalSecs = elapsedMillis/1000;
-        long hours = (totalSecs / 3600);
-        long mins = (totalSecs / 60) % 60;
-        long secs = totalSecs % 60;
-        return mins+":"+secs;
-    }
 
 
     @Override
